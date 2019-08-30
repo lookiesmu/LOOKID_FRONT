@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">LOOKID</string>
+    <string name="server_url">http://c4330022.ngrok.io/</string>
+    <string name="sign_in">user/signin</string>
+    <string name="sign_up">user/signup</string>
+    <string name="check_id">user/idcheck?id=</string>
+    <string name="find_id">user/find_id?name={name}?phone={phone}</string>
+    <string name="find_pw">user/find_pw?id={id}?mail={mail}</string>
+
+
+    <string-array name="bank_list">
+        <item>카카오뱅크</item>
+        <item>농협</item>
+        <item>신한</item>
+        <item>기업</item>
+        <item>우리</item>
+        <item>국민</item>
+        <item>SC제일</item>
+        <item>대구</item>
+        <item>부산</item>
+        <item>광주</item>
+        <item>새마을</item>
+        <item>경남</item>
+        <item>전북</item>
+        <item>제주</item>
+        <item>하나</item>
+    </string-array>
+</resources>
