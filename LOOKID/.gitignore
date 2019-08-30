@@ -8,7 +8,7 @@
 /build
 /captures
 .externalNativeBuild
-*.strings.xml
+values/strings.xml
 
 
 # Created by https://www.gitignore.io/api/kotlin,windows,androidstudio
