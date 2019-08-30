@@ -1,8 +1,8 @@
 #commit rules - 참고 (https://blog.ull.im/engineering/2019/03/10/logs-on-git.html)
-  1. add a - a 추가
-  2. fix b - b 수정
-  3. del c - c 삭제
-  4. update d - d 업데이트
+  1. Add a - a 추가
+  2. Fix b - b 수정
+  3. Del c - c 삭제
+  4. Update d - d 업데이트
    * fix 경우 원본에서 에러사항 수정 및 보완, update 경우 수정이 아닌 기능의 강화
 
 #branch rules - 참고 (https://rumblefish.tistory.com/65)
