@@ -1,20 +1,17 @@
 package lookid_front.lookid.Control
 
-import android.app.Activity
-import android.app.Application
 import android.content.Context
-import android.support.v7.app.AppCompatActivity
 import okhttp3.*
-import org.json.JSONObject
 import java.io.IOException
 
 class Okhttp() {
     var context : Context? = null
+    val client : OkHttpClient = OkHttpClient()
     constructor(context : Context) : this(){
         this.context = context
     }
 
-    fun GET(client: OkHttpClient, url:String):String{
+    fun GET(url: String):String{
         var response: Response
         var token : String? = null
 
@@ -36,7 +33,7 @@ class Okhttp() {
         }
     }
 
-    fun POST(client : OkHttpClient, url: String, jsonbody:String):String{
+    fun POST(url: String, jsonbody: String):String{
         var response: Response
         var token : String? = null
 
@@ -63,7 +60,7 @@ class Okhttp() {
         }
     }
 
-    fun DELETE(client: OkHttpClient, url: String, jsonbody: String):String{
+    fun DELETE(url: String):String{
         var response: Response
         var token : String? = null
 
@@ -73,8 +70,7 @@ class Okhttp() {
         try {
             var builder= Request.Builder()
                     .url(url)
-                    .delete(RequestBody.create(MediaType.parse("application/json"), jsonbody!!))
-
+                    .delete()
             if(!token.isNullOrEmpty())
                 builder.header("Authorization",token)
 
@@ -86,7 +82,7 @@ class Okhttp() {
         }
     }
 
-    fun PUT(client: OkHttpClient, url:String, jsonbody: String):String{
+    fun PUT(url: String, jsonbody: String):String{
         var response: Response
         var token : String? = null
 

@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">LOOKID</string>
+    <string name="server_url">http://c4330022.ngrok.io/</string>
+    <string name="check_id">user/idcheck?id=</string>
+    <string name="sign_up">user/signup</string>
+    <string name="sign_in">user/signin</string>
+    <string name="sign_out">user/signout</string>
+    <string name="find_id">user/find_id?name={name}?phone={phone}</string>
+    <string name="find_pw">user/find_pw?id={id}?mail={mail}</string>
+    <string name="find_admin">user/find_admin?id={id}</string>
+    <string name="user_modify">user/modify</string>
+    <string name="user_modify_pw">user/modify_pw</string>
+    <string name="check_date">reservation/</string>
+    <string name="selete_res">reservation/list</string>
+    <string name="selete_res_detail">reservation/detail?rv_pid={rv_pid}</string>
+    <string name="reservation">reservation/create</string>
+    <string name="reservation_modify">reservation/modify</string>
+    <string name="reservation_cancel">reservation/cancel</string>
+    <string name="map_init">map/</string>
+    <string-array name="bank_list">
+        <item>카카오뱅크</item>
+        <item>농협</item>
+        <item>신한</item>
+        <item>기업</item>
+        <item>우리</item>
+        <item>국민</item>
+        <item>SC제일</item>
+        <item>대구</item>
+        <item>부산</item>
+        <item>광주</item>
+        <item>새마을</item>
+        <item>경남</item>
+        <item>전북</item>
+        <item>제주</item>
+        <item>하나</item>
+    </string-array>
+    <string-array name="state_list">
+        <item>상태 리스트</item>
+        <item>입금 대기</item>
+        <item>예약 완료</item>
+        <item>배송 중</item>
+        <item>수령 완료</item>
+        <item>반납 대기</item>
+        <item>반납 완료</item>
+        <item>취소 신청</item>
+        <item>환불 완료</item>
+    </string-array>
+    <string name="title_activity_nav_">Nav_Activity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+</resources>

@@ -22,11 +22,12 @@ class User_Control(context: Context){
 
     fun get_token() : String? { return sharedPreferences.getString("token",null)}
     fun get_auto_login() : Boolean { return sharedPreferences.getBoolean("auto_login",false)}
-    fun get_user() : User_Entity?{
+    fun get_user() : User_Entity{
         var user = User_Entity(
-                "", sharedPreferences.getString("name", null), sharedPreferences.getString("phone", null)
-                , sharedPreferences.getString("email", null), sharedPreferences.getString("address", null), sharedPreferences.getString("bank_name", null)
-                , sharedPreferences.getString("bank_number", null), sharedPreferences.getString("bank_holder", null)
+                "", sharedPreferences.getString("name", ""), sharedPreferences.getString("phone", "")
+                , sharedPreferences.getString("email", ""), sharedPreferences.getString("address", ""),
+                sharedPreferences.getString("bank_name", "")
+                , sharedPreferences.getString("bank_number", ""), sharedPreferences.getString("bank_holder", "")
         )
         return user
     }

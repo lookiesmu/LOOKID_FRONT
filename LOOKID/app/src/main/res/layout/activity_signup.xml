@@ -9,7 +9,7 @@
     android:gravity="center"
     android:layout_margin="20dp"
 
-    tools:context=".SignUp_Activity">
+    tools:context=".Activity.SignUp_Activity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -24,10 +24,17 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
                 android:text="회원가입"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="#000000" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -73,7 +80,7 @@
                         android:id="@+id/signup_idcheck_Button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="ButtonListener"
+                        android:onClick="res_Click_Listener"
                         android:text="중복확인" />
                 </LinearLayout>
 
@@ -154,7 +161,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="text"
+                    android:inputType="text|textEmailAddress"
                     android:maxLength="12"
                     android:maxLines="1"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
@@ -174,9 +181,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
+                android:layout_marginRight="10dp"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -256,6 +263,6 @@
         android:id="@+id/signup_signup_Button"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:onClick="ButtonListener"
+        android:onClick="res_Click_Listener"
         android:text="회원가입" />
 </LinearLayout>

@@ -8,14 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="LOOKID_Theme" parent="Theme.AppCompat.NoActionBar" >
-        <item name="android:colorPrimary">@color/legacy_primary</item>
-        <item name="android:colorPrimaryDark">@android:color/black</item>
-        <item name="android:colorBackground">@android:color/white</item>
+    <style name="Lookid" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:statusBarColor">@android:color/black</item>
     </style>
 
-    <style name="Lookid" parent="Theme.AppCompat.Light.NoActionBar" >
-        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
-    </style>
+    <style name="Lookid.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Lookid.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>
