@@ -11,6 +11,7 @@ class User_Control(context: Context){
     fun set_token(token : String) {editPreferences.putString("token",token).apply()}
     fun set_auto_login(auto_login : Boolean) {editPreferences.putBoolean("auto_login",auto_login).apply()}
     fun set_user(user : User_Entity) {
+        editPreferences.putString("id",user.id)
         editPreferences.putString("name",user.name)
         editPreferences.putString("phone",user.phone)
         editPreferences.putString("email",user.email)
@@ -18,15 +19,17 @@ class User_Control(context: Context){
         editPreferences.putString("bank_name",user.bank_name)
         editPreferences.putString("bank_number",user.bank_number)
         editPreferences.putString("bank_holder",user.bank_holder)
+        editPreferences.apply()
     }
 
     fun get_token() : String? { return sharedPreferences.getString("token",null)}
     fun get_auto_login() : Boolean { return sharedPreferences.getBoolean("auto_login",false)}
-    fun get_user() : User_Entity?{
+    fun get_user() : User_Entity{
         var user = User_Entity(
-                "", sharedPreferences.getString("name", null), sharedPreferences.getString("phone", null)
-                , sharedPreferences.getString("email", null), sharedPreferences.getString("address", null), sharedPreferences.getString("bank_name", null)
-                , sharedPreferences.getString("bank_number", null), sharedPreferences.getString("bank_holder", null)
+                sharedPreferences.getString("id",""), sharedPreferences.getString("name", ""), sharedPreferences.getString("phone", "")
+                , sharedPreferences.getString("email", ""), sharedPreferences.getString("address", ""),
+                sharedPreferences.getString("bank_name", "")
+                , sharedPreferences.getString("bank_number", ""), sharedPreferences.getString("bank_holder", "")
         )
         return user
     }
