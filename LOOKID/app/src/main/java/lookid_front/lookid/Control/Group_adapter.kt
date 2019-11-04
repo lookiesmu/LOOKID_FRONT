@@ -13,11 +13,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+<<<<<<< HEAD
 import lookid_front.lookid.Activity.ResInfo_Activity
 import lookid_front.lookid.Entity.Group_Entity
 import lookid_front.lookid.R
 import lookid_front.lookid.Activity.Reservation_Activity
 import lookid_front.lookid.Entity.Admin_Entity
+=======
+import lookid_front.lookid.Entity.Group_Entity
+import lookid_front.lookid.R
+import lookid_front.lookid.Activity.Reservation_Activity
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 import org.json.JSONObject
 
 class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity>) : RecyclerView.Adapter<Group_adapter.holder>() {
@@ -26,11 +32,17 @@ class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity
     var child_num_list : ArrayList<Int> = arrayListOf<Int>(0)
     var dialog : AlertDialog? = null
     val textWatcher_ary = arrayListOf<EditListener>()
+<<<<<<< HEAD
     var group_state : Boolean = true
     var activity : String = ""
     constructor(context: Context, grouplist: ArrayList<Group_Entity>, group_state : Boolean, activity : String) : this(context, grouplist){
         this.group_state = group_state
         this.activity = activity
+=======
+    var group_state : Boolean = false
+    constructor(context: Context, grouplist: ArrayList<Group_Entity>, group_state : Boolean) : this(context, grouplist){
+        this.group_state = group_state
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
     }
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): holder {
         val view = LayoutInflater.from(context).inflate(R.layout.row_res_group,p0,false)
@@ -48,22 +60,35 @@ class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity
         val admin_Button = view.findViewById<Button>(R.id.res_group_idsearch_Button)
         val adminlist_RecView = view.findViewById<RecyclerView>(R.id.res_group_adminlist_RecView)
         val delete_Button = view.findViewById<Button>(R.id.res_group_delete_Button)
+<<<<<<< HEAD
         val child_CheckBox = view.findViewById<CheckBox>(R.id.res_group_child_CheckBox)
 
 
         fun bind(group : Group_Entity, context : Context, id : Int) {
             if(!group_state){ //변경 불가능
+=======
+
+        fun bind(group : Group_Entity, context : Context, id : Int) {
+            if(group_state){ //변경 불가능
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                 name_EditText.isEnabled = false
                 child_Button.isEnabled = false
                 admin_EditText.isEnabled = false
                 admin_Button.isEnabled = false
                 delete_Button.visibility = View.GONE
+<<<<<<< HEAD
                 child_CheckBox.visibility = View.INVISIBLE
+=======
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
             }
             val index = id
             Log.d("Res_Group","$index + 번째 그룹이 바인드됨")
             val admin_adapter = Admin_adapter(context, grouplist[index].admin_list)
             adminlist_RecView.adapter = admin_adapter
+<<<<<<< HEAD
+=======
+            adminlist_RecView.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
             if(index < grouplist.size)
                 name_EditText.setText(group.name)
             for(i in 0 until 10)
@@ -72,7 +97,10 @@ class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity
             child_Button.setOnClickListener(Click_listener(index))
             admin_Button.setOnClickListener(Click_listener(index,admin_EditText,admin_adapter))
             delete_Button.setOnClickListener(Click_listener(index,name_EditText))
+<<<<<<< HEAD
             child_CheckBox.isChecked = checked_list[index]
+=======
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
         }
     }
     //피보호자 리스트 다이얼로그를 띄워주는 함수
@@ -132,7 +160,10 @@ class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity
                         return
                     }
                     grouplist.removeAt(index)
+<<<<<<< HEAD
                     checked_list[index] = false
+=======
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                     notifyItemRemoved(index)
                     notifyItemRangeChanged(index,itemCount)
                     Log.d("Res_Group",index.toString() + "번째 그룹이 삭제됨")
@@ -141,9 +172,15 @@ class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity
                 R.id.res_group_idsearch_Button->{
 
                     if(!editText!!.text.isNullOrEmpty()){
+<<<<<<< HEAD
                         val id = editText!!.text.toString()
                         //id를 이용 검색
                         admin_adapter!!.add(Admin_Entity(0,id,id))
+=======
+                        var id = editText!!.text.toString()
+                        //id를 이용 검색
+                        admin_adapter!!.add(Pair(id,0))
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                         //GET_admin(id)
                         editText!!.setText("")
                     }
@@ -176,6 +213,7 @@ class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity
                 if(child_adapter.checklist()){
                     grouplist[index].child_list = child_adapter.getlist()
                     checked_list.set(index,true)
+<<<<<<< HEAD
                     notifyDataSetChanged()
                     //해당 리스너
                     //context로 액태비티 콜하고 해당 함수 실행
@@ -186,6 +224,12 @@ class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity
                         (context as Reservation_Activity).devicenum = getDevice_num()
                         (context as Reservation_Activity).Reservation_Control().pay_init()
                     }
+=======
+                    //해당 리스너
+                    //context로 액태비티 콜하고 해당 함수 실행
+                    (context as Reservation_Activity).devicenum = getDevice_num()
+                    (context as Reservation_Activity).Reservation_Control().pay_init()
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                     alert.dismiss()
                 }
             }

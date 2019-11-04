@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/res_view"
     android:layout_width="match_parent"
@@ -9,15 +10,37 @@
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:padding="5dp">
+=======
+    android:id="@+id/res_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/res_resname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:minLines="1"
+        android:text="예약명"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:layout_margin="10dp"
+=======
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
         android:layout_weight="1"
         android:orientation="vertical">
 
         <TextView
+<<<<<<< HEAD
             android:id="@+id/res_resname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,14 +59,38 @@
             android:layout_weight="1"
             android:text="0000.00.00 ~ 0000.00.0" />
 
+=======
+            android:id="@+id/res_sdate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="0000-00-00"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+        <TextView
+            android:id="@+id/res_edate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="0000-00-00"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
     </LinearLayout>
 
     <TextView
         android:id="@+id/res_state"
+<<<<<<< HEAD
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="10dp"
+=======
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
         android:gravity="center_horizontal"
         android:minLines="1"
         android:text="예약상태"

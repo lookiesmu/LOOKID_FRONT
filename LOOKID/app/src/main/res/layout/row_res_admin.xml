@@ -7,16 +7,27 @@
 
     <TextView
         android:id="@+id/res_group_admin_TextView"
+<<<<<<< HEAD
         android:layout_width="75dp"
         android:layout_height="24dp"
         android:layout_marginBottom="7dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="3dp"
         android:background="@drawable/view_round_fore"
+=======
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:layout_marginRight="3dp"
+        android:background="@color/primary_material_light"
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
         android:gravity="center"
         android:padding="2dp"
         android:text="관리자"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+<<<<<<< HEAD
         android:textColor="@color/LOOKID_second_ground" />
+=======
+        android:textColor="@android:color/background_light" />
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 </LinearLayout>

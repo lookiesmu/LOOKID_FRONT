@@ -10,15 +10,25 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/app_icon"
         android:supportsRtl="true"
+<<<<<<< HEAD
         android:theme="@style/Lookid"
         >
         <activity android:name=".Activity.Loading_Activity"
             android:theme="@style/SplashStyle">
+=======
+        android:theme="@style/Lookid">
+        <activity android:name=".Activity.SignIn_Activity" />
+        <activity android:name=".Activity.SignUp_Activity" />
+        <activity android:name=".Activity.FindInfo_Activity" />
+        <activity android:name=".Activity.Map_Activity" />
+        <activity android:name=".Activity.Main_Activity">
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
         <activity android:name=".Activity.SignIn_Activity">
         </activity>
         <activity android:name=".Activity.SignUp_Activity" />
@@ -26,6 +36,8 @@
         <activity android:name=".Activity.Map_Activity" />
         <activity android:name=".Activity.Main_Activity">
         </activity>
+=======
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
         <activity android:name=".Activity.Reservation_Activity" />
         <activity android:name=".Activity.UserInfo_Activity" />
         <activity android:name=".Activity.ResList_Activity" />

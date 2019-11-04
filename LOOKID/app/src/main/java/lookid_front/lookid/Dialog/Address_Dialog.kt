@@ -12,6 +12,7 @@ import android.webkit.WebView
 import android.widget.EditText
 import android.widget.TextView
 import lookid_front.lookid.R
+<<<<<<< HEAD
 import lookid_front.lookid.R.id.text
 import lookid_front.lookid.R.id.textView
 
@@ -24,6 +25,11 @@ class Address_Dialog(context: Context) : Dialog(context) {
     constructor(context: Context, editText: EditText) : this(context){
         this.editText = editText
     }
+=======
+import lookid_front.lookid.R.id.textView
+
+class Address_Dialog(context: Context, var editText: EditText) : Dialog(context) {
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
     var arg : String? = null
     var handler : Handler? = null
 
@@ -54,11 +60,16 @@ class Address_Dialog(context: Context) : Dialog(context) {
         @android.webkit.JavascriptInterface
         fun setAddress(arg1 : String, arg2 : String, arg3 : String){
             handler!!.post(Runnable {
+<<<<<<< HEAD
                 arg = "(${arg1}) ${arg2} ${arg3}"
                 if(editText != null)
                     editText!!.setText(arg)
                 else
                     textView!!.setText(arg)
+=======
+                arg = "${arg1} ${arg2} ${arg3}"
+                editText.setText(arg)
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                 init_Activity()
                 dismiss()
             })

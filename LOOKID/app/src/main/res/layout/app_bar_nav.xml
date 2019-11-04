@@ -11,7 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="false"
+<<<<<<< HEAD
         android:stateListAnimator="@null"
+=======
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
         android:theme="@style/Lookid.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar

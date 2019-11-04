@@ -9,6 +9,61 @@
     tools:context=".Activity.Main_Activity"
     tools:showIn="@layout/app_bar_nav">
 
+<<<<<<< HEAD
     <include layout="@layout/activity_main_content" />
+=======
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/main_reservation_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_main_menus"
+            android:onClick="main_Click_Listener"
+            android:text="예약하기"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@android:color/background_light" />
+
+        <Button
+            android:id="@+id/main_map_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_main_menus"
+            android:onClick="main_Click_Listener"
+            android:text="지도바로가기"
+            android:textColor="@android:color/background_light" />
+
+        <Button
+            android:id="@+id/main_checkRes_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_main_menus"
+            android:onClick="main_Click_Listener"
+            android:text="예약확인"
+            android:textColor="@android:color/background_light" />
+    </LinearLayout>
+
+    <WebView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:background="@drawable/banner_missing_child" />
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 
 </LinearLayout>

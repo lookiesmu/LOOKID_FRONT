@@ -3,14 +3,27 @@ package lookid_front.lookid.Control
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
+<<<<<<< HEAD
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+=======
+import android.os.AsyncTask
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import lookid_front.lookid.Entity.Group_Entity
 import lookid_front.lookid.R
+<<<<<<< HEAD
+=======
+import org.json.JSONObject
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 
 class Group_adapter_ResLast(val context: Context, val grouplist : ArrayList<Group_Entity>) : RecyclerView.Adapter<Group_adapter_ResLast.holder>() {
     var child_adapter : Child_adapter = Child_adapter(context)
@@ -32,6 +45,10 @@ class Group_adapter_ResLast(val context: Context, val grouplist : ArrayList<Grou
             val admin_adapter = Admin_adapter(context, grouplist[index].admin_list)
             name_TextView.setText(group.name)
             adminlist_RecView.adapter = admin_adapter
+<<<<<<< HEAD
+=======
+            adminlist_RecView.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
             child_Button.setOnClickListener(Click_listener(index))
         }
     }

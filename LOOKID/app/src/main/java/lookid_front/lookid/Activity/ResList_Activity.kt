@@ -20,6 +20,10 @@ class ResList_Activity : AppCompatActivity() {
         fun init_Activity(){
             res_adapter = Res_adapter(this@ResList_Activity, arrayListOf(Reservation_Entity("롯데월드","2019-09-29","2019-09-30",1)))
             reslist_res_RecView.adapter = res_adapter
+<<<<<<< HEAD
+=======
+            reslist_res_RecView.layoutManager = LinearLayoutManager(applicationContext)
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
         }
     }
 }

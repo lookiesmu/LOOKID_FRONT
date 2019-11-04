@@ -16,12 +16,16 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         android:textStyle="bold" />
 
+<<<<<<< HEAD
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginTop="10dp"
         android:background="#000000" />
+=======
+    tools:context=".Activity.SignUp_Activity">
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 
     <ScrollView
         android:layout_width="match_parent"
@@ -36,6 +40,24 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+<<<<<<< HEAD
+=======
+                android:text="회원가입"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="#000000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                 android:layout_alignParentEnd="true"
                 android:layout_marginBottom="10dp"
                 android:text="필수 입력 정보"
@@ -86,6 +108,7 @@
 
                     <Button
                         android:id="@+id/signup_idcheck_Button"
+<<<<<<< HEAD
                         android:layout_width="80dp"
                         android:layout_height="30dp"
                         android:background="@drawable/button_view_enable"
@@ -93,6 +116,12 @@
                         android:onClick="signup_Click_Listener"
                         android:text="중복확인"
                         android:textColor="@color/color_button_enable" />
+=======
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="res_Click_Listener"
+                        android:text="중복확인" />
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                 </LinearLayout>
 
                 <TextView
@@ -191,7 +220,10 @@
                     android:layout_marginTop="5dp"
                     android:background="@drawable/view_round_gray2"
                     android:ems="10"
+<<<<<<< HEAD
                     android:hint="주소를 포함한 이메일을 입력해주세요"
+=======
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                     android:inputType="text|textEmailAddress"
                     android:maxLength="12"
                     android:maxLines="1"
@@ -369,4 +401,13 @@
         </LinearLayout>
     </ScrollView>
 
+<<<<<<< HEAD
+=======
+    <Button
+        android:id="@+id/signup_signup_Button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:onClick="res_Click_Listener"
+        android:text="회원가입" />
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 </LinearLayout>

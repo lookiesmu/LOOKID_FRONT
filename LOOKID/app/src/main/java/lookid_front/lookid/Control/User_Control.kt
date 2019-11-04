@@ -26,7 +26,11 @@ class User_Control(context: Context){
     fun get_auto_login() : Boolean { return sharedPreferences.getBoolean("auto_login",false)}
     fun get_user() : User_Entity{
         var user = User_Entity(
+<<<<<<< HEAD
                 sharedPreferences.getString("id",""), sharedPreferences.getString("name", ""), sharedPreferences.getString("phone", "")
+=======
+                "", sharedPreferences.getString("name", ""), sharedPreferences.getString("phone", "")
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                 , sharedPreferences.getString("email", ""), sharedPreferences.getString("address", ""),
                 sharedPreferences.getString("bank_name", "")
                 , sharedPreferences.getString("bank_number", ""), sharedPreferences.getString("bank_holder", "")

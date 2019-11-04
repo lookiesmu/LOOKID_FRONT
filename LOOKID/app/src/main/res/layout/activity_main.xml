@@ -17,10 +17,18 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="#ffffff"
+<<<<<<< HEAD
         android:orientation="vertical">
 
         <include
             layout="@layout/activity_main_navigation"
+=======
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <include
+            layout="@layout/navigation_main"
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>

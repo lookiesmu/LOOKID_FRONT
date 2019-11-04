@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+<<<<<<< HEAD
     android:layout_marginTop="20dp"
     android:orientation="vertical"
     android:padding="20dp"
@@ -14,11 +15,15 @@
         android:layout_height="wrap_content"
         android:text="비밀번호"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+=======
+    android:orientation="vertical">
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 
     <EditText
         android:id="@+id/userinfo_d_pc1_EditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:layout_marginBottom="10dp"
         android:ems="10"
         android:inputType="textPassword" />
@@ -30,6 +35,11 @@
         android:text="비밀번호확인"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
+=======
+        android:ems="10"
+        android:inputType="textPassword" />
+
+>>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
     <EditText
         android:id="@+id/userinfo_d_pc2_EditText"
         android:layout_width="match_parent"
