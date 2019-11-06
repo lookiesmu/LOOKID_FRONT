@@ -45,20 +45,6 @@
         <item>취소신청</item>
         <item>환불완료</item>
     </string-array>
-<<<<<<< HEAD
-=======
-    <string-array name="state_list">
-        <item>상태 리스트</item>
-        <item>입금 대기</item>
-        <item>예약 완료</item>
-        <item>배송 중</item>
-        <item>수령 완료</item>
-        <item>반납 대기</item>
-        <item>반납 완료</item>
-        <item>취소 신청</item>
-        <item>환불 완료</item>
-    </string-array>
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
     <string name="title_activity_nav_">Nav_Activity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -66,7 +52,6 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-<<<<<<< HEAD
     <string name="refund_content">
         기기 당 대여금액 1,500원
         \n기기 당 보증금 1,000원 (기기 반납 완료 후 환금)
@@ -90,6 +75,4 @@
         예약 취소는 예약 완료 전까지 가능하며 이후는 결제 약관에 따라 금액이 환불됩니다\n
         예약하신 내역은 예약 확인 페이지에서 확인하실 수 있습니다
     </string>
-=======
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 </resources>

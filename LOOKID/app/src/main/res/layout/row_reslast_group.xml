@@ -1,29 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-<<<<<<< HEAD
     xmlns:app="http://schemas.android.com/apk/res-auto"
-=======
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="20dp"
     android:layout_marginRight="20dp"
     android:layout_marginTop="5dp"
-<<<<<<< HEAD
     android:background="@drawable/view_round_white_edge_fore"
     android:orientation="vertical"
     android:padding="15dp">
-=======
-    android:orientation="vertical">
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-<<<<<<< HEAD
         android:gravity="center_vertical"
-=======
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
         android:orientation="horizontal">
 
         <TextView
@@ -31,12 +21,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="그룹명"
-<<<<<<< HEAD
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textSize="16sp" />
-=======
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 
         <TextView
             android:id="@+id/reslast_group_name_TextView"
@@ -53,7 +39,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="피보호자"
-<<<<<<< HEAD
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textSize="16sp" />
 
@@ -63,25 +48,13 @@
             android:layout_height="30dp"
             android:layout_margin="5dp"
             android:background="@drawable/icon_kid" />
-=======
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-        <Button
-            android:id="@+id/reslast_group_child_Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-<<<<<<< HEAD
         android:gravity="center_vertical"
-=======
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
         android:orientation="horizontal">
 
         <TextView
@@ -89,7 +62,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="관리자"
-<<<<<<< HEAD
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textSize="16sp" />
 
@@ -105,17 +77,4 @@
         app:layoutManager="android.support.v7.widget.GridLayoutManager"
         app:spanCount="3" />
 
-=======
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/reslast_group_admin_RecView"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginLeft="5dp"
-            android:layout_gravity="center_vertical"
-            />
-    </LinearLayout>
-
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 </LinearLayout>

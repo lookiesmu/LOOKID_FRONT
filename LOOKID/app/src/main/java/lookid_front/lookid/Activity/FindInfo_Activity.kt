@@ -8,10 +8,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_findinfo.*
-<<<<<<< HEAD
 import kotlinx.android.synthetic.main.activity_findinfo.view.*
-=======
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 import lookid_front.lookid.Control.Json
 import lookid_front.lookid.Control.Okhttp
 import lookid_front.lookid.R
@@ -23,7 +20,6 @@ class FindInfo_Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_findinfo)
 
-<<<<<<< HEAD
         FindInfo_Control().init()
     }
 
@@ -34,15 +30,6 @@ class FindInfo_Activity : AppCompatActivity() {
             findinfo_tab_TabHost.addTab(findinfo_tab_TabHost.newTabSpec("pw").setContent(R.id.findinfo_pw_tab).setIndicator("비밀번호"))
         }
 
-=======
-        //Tab 세팅
-        findinfo_tab_TabHost.setup()
-        findinfo_tab_TabHost.addTab(findinfo_tab_TabHost.newTabSpec("id").setContent(R.id.findinfo_id_tab).setIndicator("아이디"))
-        findinfo_tab_TabHost.addTab(findinfo_tab_TabHost.newTabSpec("pw").setContent(R.id.findinfo_pw_tab).setIndicator("비밀번호"))
-    }
-
-    inner class FindInfo_Control{
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
         fun edit_check_id():Boolean{
             if(findinfo_name_EditText.text.isNullOrEmpty() && findinfo_phone_EditText.text.isNullOrEmpty()) {
                 Toast.makeText(applicationContext, "이름과 연락처를 입력해주세요", Toast.LENGTH_LONG).show()
@@ -91,32 +78,18 @@ class FindInfo_Activity : AppCompatActivity() {
         }
 
         fun Dialog_findid(id : String){
-<<<<<<< HEAD
             val builder = AlertDialog.Builder(this@FindInfo_Activity)
             builder.setMessage("회원님의 아이디는 ${id} 입니다")
             builder.setCancelable(false)
             builder.setPositiveButton("확인") { _, _ -> finish() }
-=======
-            var builder = AlertDialog.Builder(this@FindInfo_Activity)
-            builder.setMessage("회원님의 아이디는 ${id} 입니다")
-            builder.setCancelable(false)
-            builder.setPositiveButton("확인") { dialog, which -> finish() }
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
             builder.show()
         }
 
         fun Dialog_findpw(){
-<<<<<<< HEAD
             val builder = AlertDialog.Builder(this@FindInfo_Activity)
             builder.setMessage("회원님의 이메일로 임시 비밀번호가 전송되었습니다")
             builder.setCancelable(false)
             builder.setPositiveButton("확인") { _, _ -> finish() }
-=======
-            var builder = AlertDialog.Builder(this@FindInfo_Activity)
-            builder.setMessage("회원님의 이메일로 임시 비밀번호가 전송되었습니다")
-            builder.setCancelable(false)
-            builder.setPositiveButton("확인") { dialog, which -> finish() }
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
             builder.show()
         }
     }
@@ -125,11 +98,7 @@ class FindInfo_Activity : AppCompatActivity() {
         var state : Int = -1 //state == 0 : GET_아이디 찾기, state == 1 : GET_비밀번호 찾기
         override fun doInBackground(vararg params: String): String {
             state = Integer.parseInt(params[0])
-<<<<<<< HEAD
             val url = params[1]
-=======
-            var url = params[1]
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
             var response : String = ""
 
             when (state){
@@ -141,11 +110,7 @@ class FindInfo_Activity : AppCompatActivity() {
         }
 
         override fun onPostExecute(response: String) {
-<<<<<<< HEAD
             if(response.isEmpty()){
-=======
-            if(response.isNullOrEmpty()){
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                 Toast.makeText(applicationContext,"서버 오류 발생",Toast.LENGTH_SHORT).show()
                 Log.d("FindInfo_Activity","response is null")
                 return
@@ -157,11 +122,7 @@ class FindInfo_Activity : AppCompatActivity() {
                 return
             }
 
-<<<<<<< HEAD
             val jsonObj = JSONObject(response)
-=======
-            var jsonObj = JSONObject(response)
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
             when (state){
                 0->{
                     if(!jsonObj.getString("id").isNullOrEmpty())
@@ -179,38 +140,25 @@ class FindInfo_Activity : AppCompatActivity() {
         }
     }
 
-<<<<<<< HEAD
     override fun onPause() {
         Asynctask().cancel(true)
         super.onPause()
     }
 
-=======
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
     //Activity 클릭 리스너
     fun findinfo_Click_Listener(view : View){
         when(view.id){
             R.id.findinfo_findid_Button ->{
                 if(FindInfo_Control().edit_check_id()){
-<<<<<<< HEAD
                     val name = findinfo_name_EditText.text.toString()
                     val phone = findinfo_phone_EditText.text.toString()
-=======
-                    var name = findinfo_name_EditText.text.toString()
-                    var phone = findinfo_phone_EditText.text.toString()
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                     FindInfo_Control().GET_find_id(name,phone)
                 }
             }
             R.id.findinfo_findpw_Button ->{
                 if(FindInfo_Control().edit_check_pw()){
-<<<<<<< HEAD
                     val id = findinfo_id_EditText.text.toString()
                     val email = findinfo_email_EditText.text.toString()
-=======
-                    var id = findinfo_id_EditText.text.toString()
-                    var email = findinfo_email_EditText.text.toString()
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                     FindInfo_Control().GET_find_pw(id,email)
                 }
             }

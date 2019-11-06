@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-=======
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
     android:background="@color/LOOKID_foreground"
     android:orientation="vertical"
     android:padding="20dp"
@@ -167,77 +161,4 @@
 
     </RelativeLayout>
 
-=======
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="20dp"
-    tools:context=".Activity.SignIn_Activity">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="아이디"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
-
-    <EditText
-        android:id="@+id/login_id_EditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:maxLength="12"
-        android:maxLines="1"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="비밀번호"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
-
-    <EditText
-        android:id="@+id/login_pw_EditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:maxLength="20"
-        android:maxLines="1"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/login_find_info_TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="아이디/비밀번호 찾기"
-            android:onClick="login_Click_Listener"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
-
-        <CheckBox
-            android:id="@+id/login_auto_CheckBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:onClick="login_Click_Listener"
-            android:text="자동로그인" />
-    </RelativeLayout>
-
-    <Button
-        android:id="@+id/login_signup_Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="login_Click_Listener"
-        android:text="회원가입" />
-
-    <Button
-        android:id="@+id/login_login_Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="login_Click_Listener"
-        android:text="로그인" />
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 </LinearLayout>

@@ -1,18 +1,12 @@
 package lookid_front.lookid.Activity
 
 import android.content.Intent
-<<<<<<< HEAD
 import android.graphics.Color
 import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-=======
-import android.os.AsyncTask
-import android.support.v7.app.AppCompatActivity
-import android.os.Bundle
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -20,15 +14,10 @@ import kotlinx.android.synthetic.main.activity_signin.*
 import lookid_front.lookid.Control.Okhttp
 import lookid_front.lookid.Control.User_Control
 import lookid_front.lookid.Control.Json
-<<<<<<< HEAD
 import lookid_front.lookid.Dialog.Refund2_Dialog
 import lookid_front.lookid.Entity.User_Entity
 import lookid_front.lookid.R
 import lookid_front.lookid.View.StateEditText
-=======
-import lookid_front.lookid.Entity.User_Entity
-import lookid_front.lookid.R
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 import org.json.JSONObject
 
 class SignIn_Activity : AppCompatActivity() {
@@ -43,7 +32,6 @@ class SignIn_Activity : AppCompatActivity() {
             startActivity(Intent(applicationContext, Main_Activity::class.java))
             finish()
         }
-<<<<<<< HEAD
         Login_Control().edit_init()
     }
 
@@ -53,11 +41,6 @@ class SignIn_Activity : AppCompatActivity() {
             login_pw_EditText.addTextChangedListener(EditListener())
         }
 
-=======
-    }
-
-    inner class Login_Control {
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
         fun edit_check() : Boolean{
             if(login_id_EditText.text.isNullOrEmpty() && login_pw_EditText.text.isNullOrEmpty()) {
                 Toast.makeText(applicationContext, "아이디와 비밀번호를 입력해주세요", Toast.LENGTH_LONG).show()
@@ -125,13 +108,9 @@ class SignIn_Activity : AppCompatActivity() {
         when(view.id){
             R.id.login_login_Button ->{
                 if(Login_Control().edit_check()) {
-<<<<<<< HEAD
                     //Login_Control().POST_login(login_id_EditText.text.toString(), login_pw_EditText.text.toString())
                     startActivity(Intent(applicationContext, Main_Activity::class.java))
                     finish()
-=======
-                    Login_Control().POST_login(login_id_EditText.text.toString(), login_pw_EditText.text.toString())
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                 }
             }
             R.id.login_signup_Button ->startActivity(Intent(applicationContext, SignUp_Activity::class.java))
@@ -139,7 +118,6 @@ class SignIn_Activity : AppCompatActivity() {
             R.id.login_auto_CheckBox -> { User_Control(applicationContext).set_auto_login(login_auto_CheckBox.isChecked) }
         }
     }
-<<<<<<< HEAD
     inner class EditListener : TextWatcher {
         override fun afterTextChanged(s: Editable?) {
             if(!s.isNullOrEmpty())
@@ -152,7 +130,5 @@ class SignIn_Activity : AppCompatActivity() {
             //signup_signup_Button.isEnabled = false
         }
     }
-=======
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 }
 

@@ -4,13 +4,8 @@ import java.io.Serializable
 import kotlin.collections.ArrayList
 
 data class Reservation_Entity(
-<<<<<<< HEAD
         var rv_pid: Int, //인덱스
         var r_name: String, //예약명
-=======
-        var resindex: Int, //인덱스
-        var resname: String, //예약명
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
         var r_date: String, //예약 날짜
         var s_date: String, //사용 시작 날짜
         var e_date: String, //사용 종료 날짜
@@ -18,11 +13,7 @@ data class Reservation_Entity(
         var return_item: Int, //반납할 때 택배 0, 방문 1
         var cost: Int, //지불 비용
         var deposit: Int, //보증금
-<<<<<<< HEAD
         var wb_num: String, //운송장 번호
-=======
-        var wb_num : String, //운송장 번호
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
         var state: Int, //예약 상태 (1 입금 대기 2 예약 완료 3 배송 중 4 수령 완료 5 반납 대기 6 반납 완료 7 취소 신청 8 환불 완료)
         var group_list: ArrayList<Group_Entity>, //예약 그룹 리스트
         var user: User_Entity //예약자 정보 (!어플리케이션의 사용자 정보와 다름), var wb_num: kotlin.Int){}
@@ -33,11 +24,7 @@ data class Reservation_Entity(
             0, 0, 0, 0, "",state, arrayListOf<Group_Entity>(), User_Entity())
 
     fun null_res():Boolean{
-<<<<<<< HEAD
         if(r_name.isEmpty() || r_date.isEmpty() || s_date.isEmpty() || e_date.isEmpty() || cost == 0
-=======
-        if(resname.isEmpty() || r_date.isEmpty() || s_date.isEmpty() || e_date.isEmpty() || cost == 0
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
         || deposit == 0 || group_list.isEmpty() || user.isresnull())
             return true
         for(i in 0 until group_list.size){
@@ -47,11 +34,7 @@ data class Reservation_Entity(
         return false
     }
     fun null_res_modify():Boolean{
-<<<<<<< HEAD
         if(rv_pid.toString().isNullOrEmpty() || r_name.isEmpty() || r_date.isEmpty() || s_date.isEmpty() || e_date.isEmpty() || receipt_item.toString().isEmpty() || return_item.toString().isEmpty() || cost.toString().isEmpty()
-=======
-        if(resindex.toString().isNullOrEmpty() || resname.isEmpty() || r_date.isEmpty() || s_date.isEmpty() || e_date.isEmpty() || receipt_item.toString().isEmpty() || return_item.toString().isEmpty() || cost.toString().isEmpty()
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                 ||deposit.toString().isEmpty() || state.toString().isEmpty() || group_list.isEmpty() || user!!.isresnull())
             return true
         return false

@@ -97,16 +97,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
                         android:layout_marginTop="15dp"
-<<<<<<< HEAD
                         android:background="@drawable/view_round_fore"
                         android:onClick="findinfo_Click_Listener"
                         android:text="아이디 찾기"
                         android:textSize="16sp"
                         android:textStyle="bold" />
-=======
-                        android:onClick="findinfo_Click_Listener"
-                        android:text="아이디 찾기" />
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 
                 </LinearLayout>
 
@@ -146,14 +141,10 @@
                     <EditText
                         android:id="@+id/findinfo_email_EditText"
                         android:layout_width="match_parent"
-<<<<<<< HEAD
                         android:layout_height="45dp"
                         android:layout_marginBottom="15dp"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/view_round_gray2"
-=======
-                        android:layout_height="wrap_content"
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                         android:inputType="text|textEmailAddress"
                         android:maxLength="20"
                         android:maxLines="1"
@@ -166,16 +157,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
                         android:layout_marginTop="15dp"
-<<<<<<< HEAD
                         android:background="@drawable/view_round_fore"
                         android:onClick="findinfo_Click_Listener"
                         android:text="비밀번호 찾기"
                         android:textSize="16sp"
                         android:textStyle="bold" />
-=======
-                        android:onClick="findinfo_Click_Listener"
-                        android:text="비밀번호 찾기" />
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 
                 </LinearLayout>
 

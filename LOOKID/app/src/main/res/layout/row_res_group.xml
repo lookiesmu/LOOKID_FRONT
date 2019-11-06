@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-<<<<<<< HEAD
     android:layout_marginLeft="20dp"
     android:layout_marginRight="20dp"
     android:layout_marginTop="10dp"
@@ -15,18 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="visible">
-=======
-    android:layout_marginLeft="30dp"
-    android:layout_marginRight="30dp"
-    android:layout_marginTop="10dp"
-    android:background="@android:color/darker_gray"
-    android:orientation="vertical"
-    android:padding="10dp">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 
         <TextView
             android:id="@+id/res_group_name_TextView"
@@ -34,7 +21,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:text="그룹"
-<<<<<<< HEAD
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:visibility="gone" />
 
@@ -89,32 +75,6 @@
         android:layout_marginTop="10dp"
         android:background="@color/line_gray"
         android:visibility="invisible" />
-=======
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
-
-        <Button
-            android:id="@+id/res_group_delete_Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:text="삭제" />
-    </RelativeLayout>
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="이름"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
-
-    <EditText
-        android:id="@+id/res_group_name_EditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text" />
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -125,7 +85,6 @@
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-<<<<<<< HEAD
             android:text="피보호자"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textSize="16sp" />
@@ -163,31 +122,12 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:gravity="center_vertical"
-=======
-            android:layout_weight="1"
-            android:text="피보호자"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
-
-        <ImageButton
-            android:id="@+id/res_group_child_Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:padding="5dp"
-            android:src="@drawable/list" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="관리자 추가"
-<<<<<<< HEAD
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textSize="16sp" />
 
@@ -225,36 +165,12 @@
                 android:background="@drawable/icon_search" />
         </LinearLayout>
 
-=======
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
-
-        <EditText
-            android:id="@+id/res_group_admin_EditText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="text"
-            android:maxLength="14"
-            android:singleLine="true" />
-
-        <Button
-            android:id="@+id/res_group_idsearch_Button"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="조회"
-            app:srcCompat="@android:drawable/ic_menu_search" />
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/res_group_adminlist_RecView"
         android:layout_width="match_parent"
-<<<<<<< HEAD
         android:layout_height="wrap_content"
         app:layoutManager="android.support.v7.widget.GridLayoutManager"
         app:spanCount="3" />
-=======
-        android:layout_height="20dp" />
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 </LinearLayout>

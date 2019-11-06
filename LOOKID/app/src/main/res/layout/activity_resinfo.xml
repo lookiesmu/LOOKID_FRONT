@@ -20,17 +20,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-<<<<<<< HEAD
             android:layout_marginBottom="10dp"
-=======
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
             android:text="예약 정보"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textStyle="bold" />
 
         <Button
             android:id="@+id/resinfo_modify_Button"
-<<<<<<< HEAD
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentRight="true"
@@ -43,15 +39,6 @@
         android:layout_height="2dp"
         android:background="#000000" />
 
-=======
-            android:layout_width="50dp"
-            android:layout_height="40dp"
-            android:layout_alignParentRight="true"
-            android:onClick="resinfo_Click_Listener"
-            android:text="수정" />
-    </RelativeLayout>
-
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
     <ScrollView
         android:id="@+id/resinfo_ScrollView"
         android:layout_width="match_parent"
@@ -65,32 +52,17 @@
             android:orientation="vertical">
 
             <TextView
-<<<<<<< HEAD
-=======
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
-                android:background="#000000" />
-
-            <TextView
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                 android:id="@+id/textView32"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-<<<<<<< HEAD
                 android:layout_marginTop="10dp"
-=======
-                android:layout_marginBottom="10dp"
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                 android:text="예약명"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <EditText
                 android:id="@+id/resinfo_resname_EditText"
                 android:layout_width="match_parent"
-<<<<<<< HEAD
                 android:layout_height="45dp"
                 android:layout_marginBottom="15dp"
                 android:layout_marginLeft="10dp"
@@ -101,15 +73,6 @@
                 android:inputType="text"
                 android:maxLength="30"
                 android:maxLines="1"
-=======
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:inputType="text"
-                android:maxLength="30"
-                android:maxLines="1"
-                android:paddingLeft="5dp"
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                 android:singleLine="true"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
@@ -118,17 +81,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-<<<<<<< HEAD
-=======
-                android:layout_marginBottom="10dp"
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                 android:text="예약상태"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <TextView
                 android:id="@+id/resinfo_state_TextView"
                 android:layout_width="match_parent"
-<<<<<<< HEAD
                 android:layout_height="45dp"
                 android:layout_marginBottom="15dp"
                 android:layout_marginLeft="10dp"
@@ -139,13 +97,6 @@
                 android:maxLines="1"
                 android:singleLine="true"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-=======
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:text="예약 상태"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -166,17 +117,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-<<<<<<< HEAD
                 android:button="@drawable/checkbox"
 
                 android:onClick="resinfo_Click_Listener"
                 android:paddingLeft="5dp"
                 android:text="기본정보와 동일" />
-=======
-                android:onClick="resinfo_Click_Listener"
-
-                android:text="회원 정보와 동일" />
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 
             <LinearLayout
                 android:id="@+id/resinfo_userinfo_View"
@@ -195,7 +140,6 @@
                 <EditText
                     android:id="@+id/resinfo_name_EditText"
                     android:layout_width="match_parent"
-<<<<<<< HEAD
                     android:layout_height="45dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginTop="5dp"
@@ -204,12 +148,6 @@
                     android:hint="예약하시는 분의 성함을 입력해주세요"
                     android:inputType="text"
                     android:maxLength="3"
-=======
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="text"
-                    android:maxLength="12"
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                     android:maxLines="1"
                     android:singleLine="true"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
@@ -223,14 +161,10 @@
                 <EditText
                     android:id="@+id/resinfo_phone_EditText"
                     android:layout_width="match_parent"
-<<<<<<< HEAD
                     android:layout_height="45dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/view_round_gray2"
-=======
-                    android:layout_height="wrap_content"
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                     android:ems="10"
                     android:hint=" - 를 제외하고 입력해주세요"
                     android:inputType="phone"
@@ -242,10 +176,6 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-<<<<<<< HEAD
-=======
-                    android:layout_marginBottom="5dp"
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                     android:layout_marginTop="5dp">
 
                     <TextView
@@ -260,7 +190,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-<<<<<<< HEAD
                         android:layout_toEndOf="@+id/TextView"
                         android:visibility="gone" />
                 </RelativeLayout>
@@ -297,11 +226,6 @@
                         android:src="@drawable/arrow_down" />
                 </LinearLayout>
 
-=======
-                        android:layout_toEndOf="@+id/TextView" />
-                </RelativeLayout>
-
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                 <TextView
                     android:id="@+id/textView14"
                     android:layout_width="match_parent"
@@ -312,14 +236,10 @@
                 <EditText
                     android:id="@+id/resinfo_bank_number_EditText"
                     android:layout_width="match_parent"
-<<<<<<< HEAD
                     android:layout_height="45dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/view_round_gray2"
-=======
-                    android:layout_height="wrap_content"
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                     android:ems="10"
                     android:hint=" - 를 제외하고 입력해주세요"
                     android:inputType="text|number"
@@ -338,18 +258,12 @@
                 <EditText
                     android:id="@+id/resinfo_bank_holder_EditText"
                     android:layout_width="match_parent"
-<<<<<<< HEAD
                     android:layout_height="45dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/view_round_gray2"
                     android:ems="10"
                     android:hint="계좌 예금주명과 동일해야 합니다"
-=======
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="입금 예금주명과 동일해야 합니다"
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                     android:inputType="text"
                     android:maxLength="12"
                     android:maxLines="1"
@@ -391,10 +305,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-<<<<<<< HEAD
                     android:layout_marginBottom="15dp"
-=======
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -410,7 +321,6 @@
                         android:id="@+id/resinfo_startdate_TextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-<<<<<<< HEAD
                         android:layout_margin="7dp"
                         android:layout_weight="1"
                         android:background="@drawable/view_round_gray2"
@@ -418,9 +328,6 @@
                         android:onClick="resinfo_Click_Listener"
                         android:paddingLeft="0dp"
                         android:paddingRight="0dp"
-=======
-                        android:layout_margin="3dp"
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                         android:text="0000-00-00"
                         android:textAllCaps="false"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
@@ -433,10 +340,7 @@
                         android:layout_weight="1"
                         android:background="@android:color/background_light"
                         android:onClick="resinfo_Click_Listener"
-<<<<<<< HEAD
                         android:visibility="gone"
-=======
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                         app:srcCompat="@drawable/button_res_date" />
 
                     <TextView
@@ -451,7 +355,6 @@
                         android:id="@+id/resinfo_enddate_TextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-<<<<<<< HEAD
                         android:layout_margin="7dp"
                         android:layout_weight="1"
                         android:background="@drawable/view_round_gray2"
@@ -459,9 +362,6 @@
                         android:onClick="resinfo_Click_Listener"
                         android:paddingLeft="0dp"
                         android:paddingRight="0dp"
-=======
-                        android:layout_margin="3dp"
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                         android:text="0000-00-00"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
@@ -473,10 +373,7 @@
                         android:layout_weight="1"
                         android:background="@android:color/background_light"
                         android:onClick="resinfo_Click_Listener"
-<<<<<<< HEAD
                         android:visibility="gone"
-=======
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                         app:srcCompat="@drawable/button_res_date" />
 
                 </LinearLayout>
@@ -502,15 +399,11 @@
                             android:id="@+id/resinfo_rec_RadioGroup"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-<<<<<<< HEAD
                             android:gravity="center_horizontal"
-=======
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                             android:orientation="horizontal">
 
                             <RadioButton
                                 android:id="@+id/resinfo_rec_del_RadioButton"
-<<<<<<< HEAD
                                 android:layout_width="120dp"
                                 android:layout_height="36dp"
                                 android:layout_margin="5dp"
@@ -535,22 +428,6 @@
                                 android:text="방문"
                                 android:textAlignment="center"
                                 android:textColor="@drawable/radiobutton_text" />
-=======
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:checked="true"
-                                android:onClick="resinfo_Click_Listener"
-                                android:text="택배" />
-
-                            <RadioButton
-                                android:id="@+id/resinfo_rec_vis_RadioButton"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:onClick="resinfo_Click_Listener"
-                                android:text="방문" />
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                         </RadioGroup>
                     </TableRow>
 
@@ -570,15 +447,11 @@
                             android:id="@+id/resinfo_ret_RadioGroup"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-<<<<<<< HEAD
                             android:gravity="center_horizontal"
-=======
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                             android:orientation="horizontal">
 
                             <RadioButton
                                 android:id="@+id/resinfo_ret_del_RadioButton"
-<<<<<<< HEAD
                                 android:layout_width="120dp"
                                 android:layout_height="36dp"
                                 android:layout_margin="5dp"
@@ -602,22 +475,6 @@
                                 android:text="방문"
                                 android:textAlignment="center"
                                 android:textColor="@drawable/radiobutton_text" />
-=======
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:checked="true"
-                                android:onClick="resinfo_Click_Listener"
-                                android:text="택배" />
-
-                            <RadioButton
-                                android:id="@+id/resinfo_ret_vis_RadioButton"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:onClick="resinfo_Click_Listener"
-                                android:text="방문" />
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                         </RadioGroup>
                     </TableRow>
 
@@ -633,7 +490,6 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-<<<<<<< HEAD
                     android:layout_height="45dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginTop="5dp"
@@ -641,20 +497,13 @@
                     android:orientation="horizontal"
                     android:paddingBottom="0dp"
                     android:paddingTop="0dp">
-=======
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 
                     <EditText
                         android:id="@+id/resinfo_address_EditText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-<<<<<<< HEAD
                         android:background="@drawable/view_round_gray2"
-=======
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                         android:enabled="false"
                         android:gravity="center_vertical"
                         android:hint="주소를 검색해주세요"
@@ -665,7 +514,6 @@
 
                     <Button
                         android:id="@+id/resinfo_findadd_Button"
-<<<<<<< HEAD
                         android:layout_width="50dp"
                         android:layout_height="30dp"
                         android:layout_alignParentRight="true"
@@ -675,27 +523,15 @@
                         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                         android:textColor="@android:color/white" />
 
-=======
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="resinfo_Click_Listener"
-                        android:text="주소 찾기" />
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                 </LinearLayout>
 
                 <EditText
                     android:id="@+id/resinfo_addressDet_EditText"
                     android:layout_width="match_parent"
-<<<<<<< HEAD
                     android:layout_height="45dp"
                     android:background="@drawable/view_round_gray2"
                     android:ems="10"
                     android:hint="상세 주소를 입력해주세요"
-=======
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="상세 주소"
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                     android:inputType="text"
                     android:singleLine="true"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
@@ -730,12 +566,7 @@
                 android:id="@+id/resinfo_child_View"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-<<<<<<< HEAD
                 android:orientation="vertical">
-=======
-                android:orientation="vertical"
-                android:visibility="gone">
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/resinfo_grouplist_RecView"
@@ -748,12 +579,9 @@
                     android:id="@+id/resinfo_groupadd_Button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-<<<<<<< HEAD
                     android:layout_marginBottom="15dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/view_round_white_edge_second"
-=======
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                     android:onClick="resinfo_Click_Listener"
                     android:text="그룹 추가" />
             </LinearLayout>
@@ -778,14 +606,8 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="5dp"
                     android:layout_toEndOf="@+id/textView20"
-<<<<<<< HEAD
                     android:background="@drawable/icon_info"
                     android:onClick="resinfo_Click_Listener" />
-=======
-                    android:background="@android:color/background_light"
-                    android:onClick="resinfo_Click_Listener"
-                    app:srcCompat="@drawable/button_res_info" />
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
             </RelativeLayout>
 
             <TableLayout

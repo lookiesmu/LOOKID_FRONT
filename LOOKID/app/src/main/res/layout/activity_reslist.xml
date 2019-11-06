@@ -15,10 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="예약 리스트"
-<<<<<<< HEAD
         android:textStyle="bold"
-=======
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <View
@@ -32,10 +29,6 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/reslist_res_RecView"
         android:layout_width="match_parent"
-<<<<<<< HEAD
         android:layout_height="match_parent"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
-=======
-        android:layout_height="match_parent" />
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 </LinearLayout>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,7 +8,6 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="20dp"
-<<<<<<< HEAD
     android:focusable="true"
     android:focusableInTouchMode="true"
     tools:context=".Activity.UserInfo_Activity">
@@ -44,13 +43,6 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-=======
-    tools:context=".Activity.UserInfo_Activity">
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
         android:layout_weight="1">
 
         <LinearLayout
@@ -59,32 +51,11 @@
             android:orientation="vertical">
 
             <TextView
-<<<<<<< HEAD
-=======
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="회원정보"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="#000000" />
-
-            <TextView
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginBottom="10dp"
-<<<<<<< HEAD
                 android:layout_marginTop="10dp"
-=======
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                 android:text="필수 입력 정보"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textStyle="bold" />
@@ -105,16 +76,11 @@
                 <EditText
                     android:id="@+id/userinfo_id_EditText"
                     android:layout_width="match_parent"
-<<<<<<< HEAD
                     android:layout_height="45dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/view_round_gray2"
-=======
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                     android:ems="10"
                     android:enabled="false"
                     android:inputType="text"
@@ -132,14 +98,10 @@
                 <EditText
                     android:id="@+id/userinfo_name_EditText"
                     android:layout_width="match_parent"
-<<<<<<< HEAD
                     android:layout_height="45dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/view_round_gray2"
-=======
-                    android:layout_height="wrap_content"
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                     android:ems="10"
                     android:inputType="text"
                     android:maxLength="12"
@@ -155,14 +117,10 @@
                 <EditText
                     android:id="@+id/userinfo_phone_EditText"
                     android:layout_width="match_parent"
-<<<<<<< HEAD
                     android:layout_height="45dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/view_round_gray2"
-=======
-                    android:layout_height="wrap_content"
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                     android:ems="10"
                     android:inputType="text|number"
                     android:maxLength="12"
@@ -178,14 +136,10 @@
                 <EditText
                     android:id="@+id/userinfo_email_EditText"
                     android:layout_width="match_parent"
-<<<<<<< HEAD
                     android:layout_height="45dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/view_round_gray2"
-=======
-                    android:layout_height="wrap_content"
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                     android:ems="10"
                     android:inputType="text"
                     android:maxLength="12"
@@ -206,11 +160,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-<<<<<<< HEAD
                 android:layout_height="wrap_content"
-=======
-                android:layout_height="match_parent"
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:orientation="vertical">
@@ -221,7 +171,6 @@
                     android:text="주소"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
-<<<<<<< HEAD
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
@@ -311,39 +260,6 @@
                         android:src="@drawable/arrow_down"
                         android:visibility="gone" />
                 </LinearLayout>
-=======
-                <EditText
-                    android:id="@+id/userinfo_address_EditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="text"
-                    android:maxLength="12"
-                    android:maxLines="1"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:id="@+id/TextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="은행명"
-                        android:layout_centerVertical="true"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
-
-                    <Spinner
-                        android:id="@+id/userinfo_bank_name_Spinner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toEndOf="@+id/TextView" />
-                </RelativeLayout>
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 
                 <TextView
                     android:layout_width="match_parent"
@@ -354,14 +270,10 @@
                 <EditText
                     android:id="@+id/userinfo_bank_number_EditText"
                     android:layout_width="match_parent"
-<<<<<<< HEAD
                     android:layout_height="45dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/view_round_gray2"
-=======
-                    android:layout_height="wrap_content"
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                     android:ems="10"
                     android:inputType="text|number"
                     android:maxLength="12"
@@ -377,21 +289,16 @@
                 <EditText
                     android:id="@+id/userinfo_bank_holder_EditText"
                     android:layout_width="match_parent"
-<<<<<<< HEAD
                     android:layout_height="45dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/view_round_gray2"
-=======
-                    android:layout_height="wrap_content"
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
                     android:ems="10"
                     android:inputType="text"
                     android:maxLength="12"
                     android:maxLines="1"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
-<<<<<<< HEAD
             </LinearLayout>
 
             <Button
@@ -402,29 +309,8 @@
                 android:background="@drawable/view_round_fore"
                 android:onClick="userinfo_Click_Listener"
                 android:text="비밀번호 변경" />
-=======
-                <Button
-                    android:id="@+id/userinfo_pwchange_Button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="res_Click_Listener"
-                    android:text="비밀번호 변경" />
-
-            </LinearLayout>
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 
         </LinearLayout>
     </ScrollView>
 
-<<<<<<< HEAD
 </LinearLayout>
-=======
-    <Button
-        android:id="@+id/userinfo_modify_Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:onClick="res_Click_Listener"
-        android:text="수정" />
-</RelativeLayout>
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9

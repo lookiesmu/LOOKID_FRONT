@@ -1,9 +1,6 @@
 package lookid_front.lookid.Activity
 
-<<<<<<< HEAD
 import android.content.DialogInterface
-=======
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
@@ -14,36 +11,24 @@ import android.view.View
 import android.widget.Toast
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_reservation_last.*
-<<<<<<< HEAD
 import lookid_front.lookid.Control.Date_Control
 import lookid_front.lookid.Control.Group_adapter_ResLast
 import lookid_front.lookid.Control.Json
 import lookid_front.lookid.Control.Okhttp
 import lookid_front.lookid.Dialog.Basic_Dialog
 import lookid_front.lookid.Dialog.Refund_Dialog
-=======
-import lookid_front.lookid.Control.Group_adapter_ResLast
-import lookid_front.lookid.Control.Json
-import lookid_front.lookid.Control.Okhttp
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 import lookid_front.lookid.Entity.Reservation_Entity
 import lookid_front.lookid.R
 import org.json.JSONObject
 import java.text.DecimalFormat
-<<<<<<< HEAD
 import java.text.SimpleDateFormat
 import java.util.*
-=======
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 
 class ReservationLast_Activity : AppCompatActivity(){
     lateinit var reservation_Entity : Reservation_Entity
     var devicenum : Int = 0
     lateinit var group_Adapter : Group_adapter_ResLast
-<<<<<<< HEAD
     val dateFormat = SimpleDateFormat(Date_Control().dateFormat, Locale.KOREA)
-=======
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +36,6 @@ class ReservationLast_Activity : AppCompatActivity(){
         ResLast_Control().res_init()
     }
 
-<<<<<<< HEAD
     inner class ResLast_Control {
         //page 초기화
         fun res_init(){
@@ -62,23 +46,11 @@ class ReservationLast_Activity : AppCompatActivity(){
 
             //결제 정보 초기화
             reslast_resname_TextView.text = reservation_Entity.r_name
-=======
-    inner class ResLast_Control(){
-        //page 초기화
-        fun res_init(){
-            val intent = getIntent()
-            reservation_Entity = intent.getSerializableExtra("res") as Reservation_Entity
-            devicenum = intent.getIntExtra("res_devicenum",0)
-
-            //결제 정보 초기화
-            reslast_resname_TextView.text = reservation_Entity.resname
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
             reslast_name_TextView.text = reservation_Entity.user.name
             reslast_phone_TextView.text = reservation_Entity.user.phone
             reslast_bank_TextView.text = reservation_Entity.user.bank_toString()
             reslast_startdate_TextView.text = reservation_Entity.s_date
             reslast_enddate_TextView.text = reservation_Entity.e_date
-<<<<<<< HEAD
             reslast_address_TextView.text = (reservation_Entity.user.address + " " +reservation_Entity.user.address_detail)
             reslast_devicenum_TextView.text = devicenum.toString()
 
@@ -88,12 +60,6 @@ class ReservationLast_Activity : AppCompatActivity(){
             if(useday * devicenum * 1500 < 50000)
                 reslast_postpay_TextView.text = payformat.format(5000)
             reslast_totalpay_TextView.text = payformat.format(reservation_Entity.cost)
-=======
-            reslast_address_TextView.text = reservation_Entity.user.address
-            reslast_devicenum_TextView.text = devicenum.toString()
-            val payformat = DecimalFormat("###,###")
-            reslast_price_TextView.text = payformat.format(reservation_Entity.cost + reservation_Entity.deposit)
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
             if(reservation_Entity.receipt_item == 0)
                 reslast_rec_TextView.text = "택배"
             else
@@ -109,7 +75,6 @@ class ReservationLast_Activity : AppCompatActivity(){
             reslast_grouplist_RecView.layoutManager = LinearLayoutManager(applicationContext)
             reslast_grouplist_RecView.setItemViewCacheSize(100)
         }
-<<<<<<< HEAD
 
         fun Dialog_res(){
             Basic_Dialog(this@ReservationLast_Activity,"예약신청 완료",resources.getString(R.string.res_content)
@@ -118,8 +83,6 @@ class ReservationLast_Activity : AppCompatActivity(){
                 finish()
             }).show()
         }
-=======
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
     }
     inner class asynctask : AsyncTask<String, Void, String>(){
         override fun doInBackground(vararg params: String): String {
@@ -159,19 +122,10 @@ class ReservationLast_Activity : AppCompatActivity(){
             }
             R.id.reslast_payment_Button ->{
                 //서버에 포스트로 결제정보 보내기
-<<<<<<< HEAD
                 Log.d("ResLast_Activity",Gson().toJson(reservation_Entity))
                 ResLast_Control().Dialog_res()
             }
             R.id.reslast_refund_View-> Refund_Dialog(this).create().show()
-=======
-                val intent = Intent(applicationContext, Main_Activity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                Log.d("ResLast_Activity",Gson().toJson(reservation_Entity))
-                startActivity(intent)
-                finish()
-            }
->>>>>>> d285b8a4e1fbb9783320514a6335f9c216ea90e9
         }
     }
 }
