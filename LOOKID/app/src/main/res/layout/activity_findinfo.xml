@@ -11,13 +11,11 @@
 
     <TabHost
         android:id="@+id/findinfo_tab_TabHost"
-        style="@style/TabsStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TabWidget
             android:id="@android:id/tabs"
-            style="@style/TabsStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -86,7 +84,7 @@
                         android:layout_marginTop="5dp"
                         android:background="@drawable/view_round_gray2"
                         android:inputType="number"
-                        android:maxLength="20"
+                        android:maxLength="11"
                         android:maxLines="1"
                         android:singleLine="true"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
@@ -97,7 +95,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
                         android:layout_marginTop="15dp"
-                        android:background="@drawable/view_round_fore"
+                        android:background="@drawable/button_view_enable_fore"
+                        android:enabled="false"
                         android:onClick="findinfo_Click_Listener"
                         android:text="아이디 찾기"
                         android:textSize="16sp"
@@ -157,7 +156,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
                         android:layout_marginTop="15dp"
-                        android:background="@drawable/view_round_fore"
+                        android:background="@drawable/button_view_enable_fore"
+                        android:enabled="false"
                         android:onClick="findinfo_Click_Listener"
                         android:text="비밀번호 찾기"
                         android:textSize="16sp"

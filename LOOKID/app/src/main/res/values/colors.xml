@@ -6,6 +6,7 @@
     <color name="legacy_primary">#e91e63</color>
     <color name="legacy_primary_dark">#ffffff</color>
     <color name="LOOKID_foreground">#ffdb70</color>
+    <color name="LOOKID_foreground_blur">#59ffdb70</color>
     <color name="LOOKID_second_ground">#222b3c</color>
     <color name="LOOKID_second_ground_blur">#59222b3c</color>
     <color name="white_blur">#adffffff</color>

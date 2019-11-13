@@ -3,6 +3,6 @@
 
     <item android:drawable="@color/LOOKID_foreground"/>
     <item>
-        <bitmap android:gravity="center" android:src="@drawable/lookid_logo2"/>
+        <bitmap android:gravity="center" android:src="@drawable/icon_splash" />
     </item>
 </layer-list>

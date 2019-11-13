@@ -87,9 +87,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/button_view_enable"
+                android:enabled="false"
                 android:onClick="login_Click_Listener"
                 android:text="로그인"
-                android:enabled="false"
                 android:textColor="@color/color_button_enable"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -123,6 +123,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:layout_marginRight="7dp"
+                    android:button="@null"
+                    android:drawablePadding="5dp"
+                    android:drawableRight="@drawable/checkbox2"
                     android:onClick="login_Click_Listener"
                     android:text="자동로그인" />
             </LinearLayout>

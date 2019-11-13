@@ -255,6 +255,7 @@ class ResInfo_Activity : AppCompatActivity() {
                 if(!state){ //수정 시도
                     state = !state
                     ResInfo_Control().init_state(state) //view를 수정 가능으로 초기화
+                    resinfo_modify_Button.background = getDrawable(R.drawable.icon_save)
                 }
                 else{ //수정 완료
                     if(ResInfo_Control().res_init()) {//수정 내용 체크
@@ -264,6 +265,7 @@ class ResInfo_Activity : AppCompatActivity() {
                     //서버에 보내기
 
                     state = !state
+                    resinfo_modify_Button.background = getDrawable(R.drawable.icon_modify)
                     ResInfo_Control().init_state(state) //view를 수정 불가능으로 초기화
                 }
             }

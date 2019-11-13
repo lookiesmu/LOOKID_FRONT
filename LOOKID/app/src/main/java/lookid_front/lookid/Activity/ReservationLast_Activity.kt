@@ -28,7 +28,6 @@ class ReservationLast_Activity : AppCompatActivity(){
     lateinit var reservation_Entity : Reservation_Entity
     var devicenum : Int = 0
     lateinit var group_Adapter : Group_adapter_ResLast
-    val dateFormat = SimpleDateFormat(Date_Control().dateFormat, Locale.KOREA)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -115,10 +114,12 @@ class ReservationLast_Activity : AppCompatActivity(){
     fun reslast_ClickListener(view : View){
         when(view.id){
             R.id.reslast_cancel_Button ->{
-                val intent = Intent(applicationContext, Main_Activity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                startActivity(intent)
-                finish()
+                Basic_Dialog(this,"취소","정말로 취소하시겠습니까?", DialogInterface.OnClickListener { _, _ ->
+                    val intent = Intent(applicationContext, Main_Activity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    startActivity(intent)
+                    finish()
+                }).show()
             }
             R.id.reslast_payment_Button ->{
                 //서버에 포스트로 결제정보 보내기

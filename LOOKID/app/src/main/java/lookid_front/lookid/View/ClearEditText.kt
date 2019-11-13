@@ -1,6 +1,7 @@
 package lookid_front.lookid.View
 
 import android.content.Context
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.support.v7.widget.AppCompatEditText
 import android.util.AttributeSet
@@ -26,7 +27,7 @@ class ClearEditText : AppCompatEditText{
     fun create(){
         val tempDrawable : Drawable = ContextCompat.getDrawable(context, R.drawable.icon_clear)!!
         clearDrawable = DrawableCompat.wrap(tempDrawable)
-        setHintTextColor(ContextCompat.getColor(context,R.color.LOOKID_foreground))
+        setHintTextColor(ContextCompat.getColor(context,R.color.LOOKID_second_ground))
         DrawableCompat.setTintList(clearDrawable,hintTextColors)
         clearDrawable.setBounds(0,0,clearDrawable.intrinsicWidth,clearDrawable.intrinsicHeight)
 

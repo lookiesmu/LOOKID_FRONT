@@ -173,7 +173,7 @@
                     android:ems="10"
                     android:hint=" - 를 제외하고 입력해주세요"
                     android:inputType="number"
-                    android:maxLength="12"
+                    android:maxLength="11"
                     android:maxLines="1"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 

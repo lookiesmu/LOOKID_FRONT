@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
@@ -20,7 +20,7 @@
     <style name="Lookid.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="DialogStyle" parent="Theme.AppCompat.Light.Dialog">
-        <item name="colorAccent">@color/LOOKID_foreground</item>
+        <item name="colorAccent">@color/LOOKID_second_ground</item>
         <item name="android:textColorSecondaryInverse">@color/LOOKID_second_ground</item>
         <item name="android:textColorPrimary">@color/LOOKID_second_ground</item>
         <item name="android:textColorPrimaryInverse">@color/LOOKID_second_ground</item>
@@ -45,10 +45,8 @@
         <item name="windowFixedHeightMinor">@dimen/dialog_height</item>
     </style>
 
-    <style name="TabsStyle" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:colorPrimary">@color/LOOKID_second_ground</item>
-        <item name="android:colorAccent">@color/LOOKID_second_ground</item>
-        <item name="android:textColorHint">@color/LOOKID_second_ground</item>
+    <style name="TabsStyle" parent="android:Widget.TabWidget">
+        <item name="android:background">@color/LOOKID_foreground</item>
     </style>
     
     <style name="SplashStyle" parent="Theme.AppCompat.NoActionBar">

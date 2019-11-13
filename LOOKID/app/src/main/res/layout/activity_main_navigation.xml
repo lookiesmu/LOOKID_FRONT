@@ -7,7 +7,7 @@
     android:layout_gravity="start"
     android:orientation="vertical"
 
-    android:paddingBottom="10dp"
+    android:paddingBottom="20dp"
     tools:context=".Activity.Main_Activity">
 
     <RelativeLayout
@@ -95,7 +95,8 @@
                 android:id="@+id/main_faq_View"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:paddingBottom="5dp">
 
                 <ImageView
                     android:id="@+id/imageView3"
@@ -119,7 +120,8 @@
                 android:id="@+id/main_info_View"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:paddingBottom="5dp">
 
                 <ImageView
                     android:id="@+id/imageView4"
@@ -139,16 +141,31 @@
                     android:textSize="16sp" />
             </TableRow>
 
-        </TableLayout>
+            <TableRow
+                android:id="@+id/main_logout_View"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:onClick="main_Click_Listener"
+                android:paddingBottom="5dp">
 
-        <View
-            android:id="@+id/view2"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="15dp"
-            android:background="@android:color/black"
-            android:visibility="invisible" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    app:srcCompat="@drawable/icon_exit" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:text="로그아웃"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textSize="16sp" />
+            </TableRow>
+
+        </TableLayout>
 
         <Button
             android:id="@+id/main_signout_Button"
@@ -161,7 +178,8 @@
             android:paddingRight="15dp"
             android:text="로그아웃"
             android:textColor="@android:color/white"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="gone" />
     </LinearLayout>
 
 </LinearLayout>

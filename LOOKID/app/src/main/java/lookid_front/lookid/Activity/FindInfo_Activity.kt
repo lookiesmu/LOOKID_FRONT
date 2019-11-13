@@ -4,8 +4,12 @@ import android.app.AlertDialog
 import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_findinfo.*
 import kotlinx.android.synthetic.main.activity_findinfo.view.*
@@ -28,6 +32,12 @@ class FindInfo_Activity : AppCompatActivity() {
             findinfo_tab_TabHost.setup()
             findinfo_tab_TabHost.addTab(findinfo_tab_TabHost.newTabSpec("id").setContent(R.id.findinfo_id_tab).setIndicator("아이디"))
             findinfo_tab_TabHost.addTab(findinfo_tab_TabHost.newTabSpec("pw").setContent(R.id.findinfo_pw_tab).setIndicator("비밀번호"))
+
+            findinfo_name_EditText.addTextChangedListener(EditListener(findinfo_findid_Button,findinfo_name_EditText,findinfo_phone_EditText))
+            findinfo_phone_EditText.addTextChangedListener(EditListener(findinfo_findid_Button,findinfo_name_EditText,findinfo_phone_EditText))
+
+            findinfo_id_EditText.addTextChangedListener(EditListener(findinfo_findpw_Button,findinfo_id_EditText,findinfo_email_EditText))
+            findinfo_email_EditText.addTextChangedListener(EditListener(findinfo_findpw_Button,findinfo_id_EditText,findinfo_email_EditText))
         }
 
         fun edit_check_id():Boolean{
@@ -163,5 +173,13 @@ class FindInfo_Activity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    inner class EditListener(val button: Button, val editText1 : EditText, val editText2: EditText) : TextWatcher{
+        override fun afterTextChanged(s: Editable?) {
+            button.isEnabled = editText1.text.isNotEmpty() && editText2.text.isNotEmpty()
+        }
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
     }
 }

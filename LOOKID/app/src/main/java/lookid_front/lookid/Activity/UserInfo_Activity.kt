@@ -19,6 +19,7 @@ import lookid_front.lookid.Dialog.Address_Dialog
 import lookid_front.lookid.Dialog.Bank_Dialog
 import lookid_front.lookid.Entity.User_Entity
 import lookid_front.lookid.R
+import lookid_front.lookid.R.id.*
 import org.json.JSONObject
 
 class UserInfo_Activity : AppCompatActivity() {
@@ -82,6 +83,7 @@ class UserInfo_Activity : AppCompatActivity() {
                 user.bank_holder = userinfo_bank_holder_EditText.text.toString()
                 //1. User_Control update
                 User_Control(applicationContext).set_user(user)
+                userinfo_modify_Button.background = getDrawable(R.drawable.icon_modify)
 
                 //2. server update
                 PUT_user_modify(user)
@@ -204,10 +206,13 @@ class UserInfo_Activity : AppCompatActivity() {
     fun userinfo_Click_Listener(view : View){
         when (view.id){
             R.id.userinfo_modify_Button ->{
-                if(!editmode)
+                if(!editmode) {
                     UserInfo_Control().user_modify()
-                else
+                    userinfo_modify_Button.background = getDrawable(R.drawable.icon_save)
+                }
+                else {
                     UserInfo_Control().Dialog_make_sure()
+                }
             }
             R.id.userinfo_pwchange_Button ->{ UserInfo_Control().Dialog_pw_change() }
             R.id.userinfo_bank_name_Button -> { UserInfo_Control().Dialog_bankname()}
@@ -217,11 +222,11 @@ class UserInfo_Activity : AppCompatActivity() {
 
     inner class Dialog_Listener : DialogInterface.OnShowListener{
         override fun onShow(dialog: DialogInterface?) {
-            var alert = dialog as AlertDialog
-            var positiveButton : Button = alert.getButton(AlertDialog.BUTTON_POSITIVE)
+            val alert = dialog as AlertDialog
+            val positiveButton : Button = alert.getButton(AlertDialog.BUTTON_POSITIVE)
             positiveButton.setOnClickListener {
-                var pw1 = alert.findViewById<EditText>(R.id.userinfo_d_pc1_EditText).text.toString()
-                var pw2 = alert.findViewById<EditText>(R.id.userinfo_d_pc2_EditText).text.toString()
+                val pw1 = alert.findViewById<EditText>(R.id.userinfo_d_pc1_EditText).text.toString()
+                val pw2 = alert.findViewById<EditText>(R.id.userinfo_d_pc2_EditText).text.toString()
                 if(checkpw(pw1,pw2)){
                     UserInfo_Control().PUT_pw_modify(pw1)
                     alert.dismiss()

@@ -4,10 +4,6 @@
     android:radius="50dp"
     />
 <solid
-    android:color="@android:color/white"
+    android:color="@color/LOOKID_foreground_blur"
     />
-    <stroke
-        android:width="2dp"
-        android:color="@color/LOOKID_second_ground"
-        />
 </shape>

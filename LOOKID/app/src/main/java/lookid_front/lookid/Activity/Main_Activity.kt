@@ -9,19 +9,23 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
+import android.webkit.WebViewClient
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main_content.*
 import kotlinx.android.synthetic.main.app_bar_nav.*
 import kotlinx.android.synthetic.main.activity_main_navigation.*
 import lookid_front.lookid.Control.Json
 import lookid_front.lookid.Control.Okhttp
 import lookid_front.lookid.Control.Res_adapter
 import lookid_front.lookid.Control.User_Control
+import lookid_front.lookid.Dialog.Basic_Dialog
 import lookid_front.lookid.Dialog.SignOut_Dialog
 import lookid_front.lookid.Dialog.Exit_Dialog
 import lookid_front.lookid.Entity.Reservation_Entity
 import lookid_front.lookid.Entity.User_Entity
 import lookid_front.lookid.R
+import lookid_front.lookid.R.id.*
 import org.json.JSONObject
 
 class Main_Activity : AppCompatActivity() {
@@ -50,6 +54,12 @@ class Main_Activity : AppCompatActivity() {
                     ,"서울시 ","농협","51230123","홍홍택"))
 
             main_id_TextView.text = User_Control(applicationContext).get_user().id
+
+            //main_missing_child_WebView.webViewClient(WebViewClient())
+            val webSettings = main_missing_child_WebView.settings
+            webSettings.javaScriptEnabled = true
+
+            main_missing_child_WebView.loadUrl("http://a6d98d12.ngrok.io/web/childCustom")
         }
 
         //사용자가 예약한 날짜가 오늘인지 확인 후 실행 activity 결정
@@ -108,6 +118,7 @@ class Main_Activity : AppCompatActivity() {
             R.id.main_map_View ->startActivity(Intent(applicationContext, Map_Activity::class.java))
             R.id.main_checkRes_View ->startActivity(Intent(applicationContext, ResList_Activity::class.java))
             R.id.main_signout_Button ->Main_Control().GET_signout()
+            R.id.main_logout_View -> Main_Control().GET_signout()
             R.id.main_userinfo_Button -> startActivity(Intent(applicationContext, UserInfo_Activity::class.java))
         }
     }
