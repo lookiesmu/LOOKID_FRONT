@@ -1,7 +1,6 @@
 package lookid_front.lookid.Activity
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -14,10 +13,8 @@ import kotlinx.android.synthetic.main.activity_signin.*
 import lookid_front.lookid.Control.Okhttp
 import lookid_front.lookid.Control.User_Control
 import lookid_front.lookid.Control.Json
-import lookid_front.lookid.Dialog.Refund2_Dialog
 import lookid_front.lookid.Entity.User_Entity
 import lookid_front.lookid.R
-import lookid_front.lookid.View.StateEditText
 import org.json.JSONObject
 
 class SignIn_Activity : AppCompatActivity() {

@@ -77,7 +77,7 @@ class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity
     }
     //피보호자 리스트 다이얼로그를 띄워주는 함수
     fun Dialog_child(index : Int){
-        val builder = AlertDialog.Builder(this.context)
+        val builder = AlertDialog.Builder(this.context,R.style.DialogStyle_child)
         builder.setTitle("피보호자 목록")
         var inflater  = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         builder.setView(inflater.inflate(R.layout.dialog_res_childlist,null))
@@ -139,7 +139,6 @@ class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity
                     Log.d("Res_Group",grouplist.toString())
                 }
                 R.id.res_group_idsearch_Button->{
-
                     if(!editText!!.text.isNullOrEmpty()){
                         val id = editText!!.text.toString()
                         //id를 이용 검색
@@ -171,6 +170,7 @@ class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity
                 child_num.setText(grouplist[index].child_list.size.toString())
                 child_adapter.setlist(grouplist[index].child_list)
             }
+            child_button.isEnabled = !child_num.text.isNullOrEmpty()
 
             positiveButton.setOnClickListener {
                 if(child_adapter.checklist()){
@@ -197,6 +197,7 @@ class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity
                     child_adapter.list_init(child_num.text.toString().toInt())
                 }
             }
+            child_num.addTextChangedListener(EditListener_child(child_button))
         }
     }
     inner class EditListener(var index : Int) : TextWatcher {
@@ -212,17 +213,7 @@ class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { }
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
     }
-    inner class numEditListener(val index : Int) : TextWatcher{
-        override fun afterTextChanged(s: Editable?) {
-            if(!s.isNullOrEmpty())
-                child_num_list[index] = s.toString().toInt()
-            Log.d("Res_Group","리스너 콜됨")
-        }
-        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-        }
-        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-        }
-    }
+
     inner class asynctask : AsyncTask<String, Void, String>(){
         override fun doInBackground(vararg params: String): String {
             //GET_관리자 검색
@@ -248,5 +239,12 @@ class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity
             /*else
                 admin_adapter.add(Pair(name, index))*/
         }
+    }
+    inner class EditListener_child(val child_button: Button) : TextWatcher {
+        override fun afterTextChanged(s: Editable?) {
+            child_button.isEnabled = !s.isNullOrEmpty()
+        }
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {        }
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
     }
 }

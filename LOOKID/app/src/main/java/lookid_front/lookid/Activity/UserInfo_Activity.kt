@@ -19,7 +19,6 @@ import lookid_front.lookid.Dialog.Address_Dialog
 import lookid_front.lookid.Dialog.Bank_Dialog
 import lookid_front.lookid.Entity.User_Entity
 import lookid_front.lookid.R
-import lookid_front.lookid.R.id.*
 import org.json.JSONObject
 
 class UserInfo_Activity : AppCompatActivity() {
@@ -52,7 +51,7 @@ class UserInfo_Activity : AppCompatActivity() {
             userinfo_address_TextView.text = user.address
             userinfo_addressDet_EditText.setText(user.address_detail)
             userinfo_bank_name_TextView.text = user.bank_name
-            userinfo_bank_number_EditText.setText(user.bank_number)
+            userinfo_bank_number_EditText.setText(user.bank_num)
             userinfo_bank_holder_EditText.setText(user.bank_holder)
         }
 
@@ -79,7 +78,7 @@ class UserInfo_Activity : AppCompatActivity() {
                 user.address = userinfo_address_TextView.text.toString()
                 user.address_detail = userinfo_addressDet_EditText.text.toString()
                 user.bank_name = userinfo_bank_name_TextView.text.toString()
-                user.bank_number = userinfo_bank_number_EditText.text.toString()
+                user.bank_num = userinfo_bank_number_EditText.text.toString()
                 user.bank_holder = userinfo_bank_holder_EditText.text.toString()
                 //1. User_Control update
                 User_Control(applicationContext).set_user(user)

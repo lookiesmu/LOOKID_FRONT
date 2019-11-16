@@ -80,7 +80,16 @@ class ReservationLast_Activity : AppCompatActivity(){
             , DialogInterface.OnClickListener { _, _ ->
                 startActivity(Intent(applicationContext, Main_Activity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                 finish()
-            }).show()
+            },true).show()
+        }
+
+        fun Dialog_cancel(){
+            Basic_Dialog(this@ReservationLast_Activity,"취소","정말로 취소하시겠습니까?", DialogInterface.OnClickListener { _, _ ->
+                val intent = Intent(applicationContext, Main_Activity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                startActivity(intent)
+                finish()
+            },true).show()
         }
     }
     inner class asynctask : AsyncTask<String, Void, String>(){
@@ -113,17 +122,9 @@ class ReservationLast_Activity : AppCompatActivity(){
 
     fun reslast_ClickListener(view : View){
         when(view.id){
-            R.id.reslast_cancel_Button ->{
-                Basic_Dialog(this,"취소","정말로 취소하시겠습니까?", DialogInterface.OnClickListener { _, _ ->
-                    val intent = Intent(applicationContext, Main_Activity::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    startActivity(intent)
-                    finish()
-                }).show()
-            }
+            R.id.reslast_cancel_Button -> ResLast_Control().Dialog_cancel()
             R.id.reslast_payment_Button ->{
                 //서버에 포스트로 결제정보 보내기
-                Log.d("ResLast_Activity",Gson().toJson(reservation_Entity))
                 ResLast_Control().Dialog_res()
             }
             R.id.reslast_refund_View-> Refund_Dialog(this).create().show()

@@ -2,7 +2,6 @@ package lookid_front.lookid.Activity
 
 import android.app.AlertDialog
 import android.content.DialogInterface
-import android.graphics.Color
 import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -11,14 +10,12 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.*
-import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_signup.*
 import lookid_front.lookid.Dialog.Loading_Dialog
 import lookid_front.lookid.Control.Okhttp
 import lookid_front.lookid.Control.Json
 import lookid_front.lookid.Dialog.Address_Dialog
 import lookid_front.lookid.Dialog.Bank_Dialog
-import lookid_front.lookid.Entity.Reservation_Entity
 import lookid_front.lookid.Entity.User_Entity
 import lookid_front.lookid.R
 import org.json.JSONObject

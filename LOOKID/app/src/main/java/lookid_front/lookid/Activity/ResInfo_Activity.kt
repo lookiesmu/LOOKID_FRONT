@@ -90,7 +90,7 @@ class ResInfo_Activity : AppCompatActivity() {
                 resinfo_ret_vis_RadioButton.isChecked = true
 
             resinfo_bank_name_TextView.text = res.user.bank_name
-            resinfo_bank_number_EditText.setText(res.user.bank_number)
+            resinfo_bank_number_EditText.setText(res.user.bank_num)
             resinfo_bank_holder_EditText.setText(res.user.bank_holder)
             resinfo_startdate_TextView.text = res.s_date
             resinfo_enddate_TextView.text = res.e_date
@@ -137,7 +137,7 @@ class ResInfo_Activity : AppCompatActivity() {
             res.r_name = resinfo_resname_EditText.text.toString()
             res.user.name = resinfo_name_EditText.text.toString()
             res.user.phone = resinfo_phone_EditText.text.toString()
-            res.user.bank_number = resinfo_bank_number_EditText.text.toString()
+            res.user.bank_num = resinfo_bank_number_EditText.text.toString()
             res.user.bank_name = resinfo_bank_name_TextView.text.toString()
             res.user.bank_holder = resinfo_bank_holder_EditText.text.toString()
             res.r_date = dateFormat.format(Date())
@@ -159,7 +159,7 @@ class ResInfo_Activity : AppCompatActivity() {
                 resinfo_name_EditText.setText(user.name)
                 resinfo_phone_EditText.setText(user.phone)
                 resinfo_bank_name_TextView.text = user.bank_name
-                resinfo_bank_number_EditText.setText(user.bank_number)
+                resinfo_bank_number_EditText.setText(user.bank_num)
                 resinfo_bank_holder_EditText.setText(user.bank_holder)
                 for(i in 0 until viewlist.size)
                     viewlist[i].isEnabled = false

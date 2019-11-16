@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
-import android.webkit.WebViewClient
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main_content.*
@@ -19,13 +18,11 @@ import lookid_front.lookid.Control.Json
 import lookid_front.lookid.Control.Okhttp
 import lookid_front.lookid.Control.Res_adapter
 import lookid_front.lookid.Control.User_Control
-import lookid_front.lookid.Dialog.Basic_Dialog
 import lookid_front.lookid.Dialog.SignOut_Dialog
 import lookid_front.lookid.Dialog.Exit_Dialog
 import lookid_front.lookid.Entity.Reservation_Entity
 import lookid_front.lookid.Entity.User_Entity
 import lookid_front.lookid.R
-import lookid_front.lookid.R.id.*
 import org.json.JSONObject
 
 class Main_Activity : AppCompatActivity() {

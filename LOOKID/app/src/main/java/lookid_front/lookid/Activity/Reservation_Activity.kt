@@ -1,6 +1,7 @@
 package lookid_front.lookid.Activity
 
 import android.app.DatePickerDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.widget.NestedScrollView
@@ -14,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_reservation.*
 import lookid_front.lookid.Control.*
 import lookid_front.lookid.Dialog.Address_Dialog
 import lookid_front.lookid.Dialog.Bank_Dialog
+import lookid_front.lookid.Dialog.Basic_Dialog
 import lookid_front.lookid.Entity.Group_Entity
 import lookid_front.lookid.Entity.Reservation_Entity
 import lookid_front.lookid.R
@@ -48,7 +50,7 @@ class Reservation_Activity : AppCompatActivity() {
                     val user = User_Control(applicationContext).get_user()
                     res_name_EditText.setText(user.name)
                     res_phone_EditText.setText(user.phone)
-                    res_bank_number_EditText.setText(user.bank_number)
+                    res_bank_number_EditText.setText(user.bank_num)
                     res_bank_holder_EditText.setText(user.bank_holder)
                     userinfo_bank_name_TextView.text = user.bank_name
                 }
@@ -171,12 +173,19 @@ class Reservation_Activity : AppCompatActivity() {
             bank_Dialog.show()
         }
 
+        fun Dialog_cancel(){
+            Basic_Dialog(this@Reservation_Activity,"취소","정말로 뒤로 가시겠습니까?\n작성하신 내용이 초기화 됩니다.",
+                    DialogInterface.OnClickListener { _, _ ->
+                finish()
+            },true).show()
+        }
+
         //결제 정보 초기화 함수
         fun res_init():Boolean{
             Reservation_Entity.r_name = res_resname_EditText.text.toString()
             Reservation_Entity.user.name = res_name_EditText.text.toString()
             Reservation_Entity.user.phone = res_phone_EditText.text.toString()
-            Reservation_Entity.user.bank_number = res_bank_number_EditText.text.toString()
+            Reservation_Entity.user.bank_num = res_bank_number_EditText.text.toString()
             Reservation_Entity.user.bank_holder = res_bank_holder_EditText.text.toString()
             Reservation_Entity.user.bank_name = userinfo_bank_name_TextView.text.toString()
             Reservation_Entity.r_date = dateFormat.format(Date())
@@ -224,20 +233,22 @@ class Reservation_Activity : AppCompatActivity() {
                 Reservation_Control().pay_init()
                 if(Reservation_Control().res_init()) {
                     Toast.makeText(applicationContext, "예약 정보를 모두 입력해주세요", Toast.LENGTH_LONG).show()
-                    Log.d("Res_Acitivity",Reservation_Entity.toString())
-                    Log.d("Res_Acitivity",Gson().toJson(Reservation_Entity))
                     return
                 }
-                Log.d("Res_Acitivity",Reservation_Entity.toString())
                 val intent = Intent(applicationContext, ReservationLast_Activity::class.java)
                 intent.putExtra("res", Reservation_Entity)
                 intent.putExtra("res_devicenum" , group_Adapter.getDevice_num())
                 intent.putExtra("res_useday" , useDay)
                 startActivity(intent)
+                Log.d("Res_Acitivity",Json().reservation(Reservation_Entity))
             }
             R.id.res_bank_name_Button->Reservation_Control().Dialog_bankname()
             R.id.res_startdate_TextView ->Reservation_Control().Dialog_DatePicker(0)
             R.id.res_enddate_TextView ->Reservation_Control().Dialog_DatePicker(1)
         }
+    }
+
+    override fun onBackPressed() {
+        Reservation_Control().Dialog_cancel()
     }
 }

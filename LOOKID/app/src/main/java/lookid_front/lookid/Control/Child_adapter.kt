@@ -11,11 +11,12 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import lookid_front.lookid.Entity.Child_Entity
 import lookid_front.lookid.R
 
 class Child_adapter(val context: Context) : RecyclerView.Adapter<Child_adapter.holder>() {
     var res_state : Boolean = false
-    var childlist = ArrayList<String>()
+    var childlist = ArrayList<Child_Entity>()
     val textWatcher_ary = arrayListOf<EditListener>()
     constructor(context : Context, res_state : Boolean) : this(context){
         this.res_state = res_state
@@ -28,7 +29,7 @@ class Child_adapter(val context: Context) : RecyclerView.Adapter<Child_adapter.h
         return holder(view)
     }
     override fun getItemCount(): Int { return childlist.size }
-    override fun onBindViewHolder(p0: holder, p1: Int) { p0.bind(context,childlist[p1],p1)}
+    override fun onBindViewHolder(p0: holder, p1: Int) { p0.bind(context,childlist[p1].name,p1)}
 
     inner class holder(view: View) : RecyclerView.ViewHolder(view) {
         val childEditText = view.findViewById<EditText>(R.id.res_child_name_EditText)
@@ -39,7 +40,7 @@ class Child_adapter(val context: Context) : RecyclerView.Adapter<Child_adapter.h
             if(res_state)
                 childEditText.isEnabled = false
             if(index < itemCount) {
-                childEditText.setText(childlist[index])
+                childEditText.setText(childlist[index].name)
             }
             for(i in 0 until itemCount)
                 childEditText.removeTextChangedListener(textWatcher_ary[i])
@@ -50,7 +51,7 @@ class Child_adapter(val context: Context) : RecyclerView.Adapter<Child_adapter.h
         var str : String = ""
         var count = 0
         for(i in 0 until childlist.size){
-            if(childlist[i].isEmpty()){
+            if(childlist[i].name.isEmpty()){
                 str = str + (i + 1).toString() + ", "
                 count++
             }
@@ -61,7 +62,7 @@ class Child_adapter(val context: Context) : RecyclerView.Adapter<Child_adapter.h
         }
         if(str != ""){
             str = str.substring(0, str.lastIndex - 1)
-            Toast.makeText(context,"${str} 번째 이름을 입력해주세요",Toast.LENGTH_SHORT).show()
+            Toast.makeText(context,"$str 번째 이름을 입력해주세요",Toast.LENGTH_SHORT).show()
             return false
         }
         return true
@@ -73,7 +74,7 @@ class Child_adapter(val context: Context) : RecyclerView.Adapter<Child_adapter.h
         }
         if(childlist.size < size){
             for(i in childlist.size until size){
-                childlist.add("")
+                childlist.add(Child_Entity())
                 notifyItemChanged(i)
             }
         }
@@ -86,22 +87,20 @@ class Child_adapter(val context: Context) : RecyclerView.Adapter<Child_adapter.h
         Log.d("Res_Group", childlist.toString())
     }
 
-    fun setlist(list : ArrayList<String>){
+    fun setlist(list : ArrayList<Child_Entity>){
         childlist = list
         notifyDataSetChanged()
     }
-    fun getlist():ArrayList<String>{return childlist}
+    fun getlist():ArrayList<Child_Entity>{return childlist}
 
     inner class EditListener(var index: Int) : TextWatcher {
         override fun afterTextChanged(s: Editable?) {
             if(!s.toString().isEmpty()) {
-                Log.d("Res_Group", "차일드 리스트의 $index 번째에 ${s.toString()} 을 넣음")
                 if(index < itemCount)
-                    childlist[index] = s.toString()
+                    childlist[index].name = s.toString()
             }
             else {
-                childlist[index] = ""
-                Log.d("Res_Group", "그룹 리스트의 $index 번째에 ${s.toString()} 넣지 않음")
+                childlist[index].name = ""
             }
         }
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { }

@@ -17,7 +17,7 @@ class User_Control(context: Context){
         editPreferences.putString("email",user.email)
         editPreferences.putString("address",user.address)
         editPreferences.putString("bank_name",user.bank_name)
-        editPreferences.putString("bank_number",user.bank_number)
+        editPreferences.putString("bank_number",user.bank_num)
         editPreferences.putString("bank_holder",user.bank_holder)
         editPreferences.apply()
     }
