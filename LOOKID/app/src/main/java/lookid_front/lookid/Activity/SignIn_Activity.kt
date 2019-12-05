@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_signin.*
 import lookid_front.lookid.Control.Okhttp
 import lookid_front.lookid.Control.User_Control
 import lookid_front.lookid.Control.Json
-import lookid_front.lookid.Entity.User_Entity
+import lookid_front.lookid.Entity.User
 import lookid_front.lookid.R
 import org.json.JSONObject
 
@@ -84,7 +84,7 @@ class SignIn_Activity : AppCompatActivity() {
             }
 
             var jsonObj = JSONObject(response)
-            var user = User_Entity(
+            var user = User(
                     login_id_EditText.text.toString(),
                     jsonObj.getString("name"),
                     jsonObj.getString("phone"),

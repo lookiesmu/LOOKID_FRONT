@@ -19,6 +19,7 @@ import lookid_front.lookid.Dialog.Basic_Dialog
 import lookid_front.lookid.Dialog.Refund_Dialog
 import lookid_front.lookid.Entity.Reservation_Entity
 import lookid_front.lookid.R
+import lookid_front.lookid.R.id.*
 import org.json.JSONObject
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
@@ -98,6 +99,7 @@ class ReservationLast_Activity : AppCompatActivity(){
             val url = params[0]
             return Okhttp(applicationContext).POST(url,params[1])
         }
+
 
         override fun onPostExecute(response: String) {
             if(response.isEmpty()) {

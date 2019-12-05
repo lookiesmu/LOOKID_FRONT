@@ -2,13 +2,13 @@ package lookid_front.lookid.Entity
 
 import java.io.Serializable
 
-data class Group_Entity(
+data class Group(
         var g_pid: Int, //그룹 인덱스
-        var child_list: ArrayList<Child_Entity>, //피보호자 리스트
-        var admin_list: ArrayList<Admin_Entity>, //관리자 리스트
+        var child_list: ArrayList<Child>, //피보호자 리스트
+        var admin_list: ArrayList<Admin>, //관리자 리스트
         var name: String //그룹명
 ) : Serializable{
-    constructor() : this(0, arrayListOf<Child_Entity>(), arrayListOf<Admin_Entity>(), "")
+    constructor() : this(0, arrayListOf<Child>(), arrayListOf<Admin>(), "")
     fun isnull() : Boolean{
         if(child_list.size == 0 || admin_list.size == 0)
             return true

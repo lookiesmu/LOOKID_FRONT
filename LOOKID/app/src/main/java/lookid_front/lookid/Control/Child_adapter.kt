@@ -11,12 +11,12 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import lookid_front.lookid.Entity.Child_Entity
+import lookid_front.lookid.Entity.Child
 import lookid_front.lookid.R
 
 class Child_adapter(val context: Context) : RecyclerView.Adapter<Child_adapter.holder>() {
     var res_state : Boolean = false
-    var childlist = ArrayList<Child_Entity>()
+    var childlist = ArrayList<Child>()
     val textWatcher_ary = arrayListOf<EditListener>()
     constructor(context : Context, res_state : Boolean) : this(context){
         this.res_state = res_state
@@ -74,7 +74,7 @@ class Child_adapter(val context: Context) : RecyclerView.Adapter<Child_adapter.h
         }
         if(childlist.size < size){
             for(i in childlist.size until size){
-                childlist.add(Child_Entity())
+                childlist.add(Child())
                 notifyItemChanged(i)
             }
         }
@@ -87,11 +87,11 @@ class Child_adapter(val context: Context) : RecyclerView.Adapter<Child_adapter.h
         Log.d("Res_Group", childlist.toString())
     }
 
-    fun setlist(list : ArrayList<Child_Entity>){
+    fun setlist(list : ArrayList<Child>){
         childlist = list
         notifyDataSetChanged()
     }
-    fun getlist():ArrayList<Child_Entity>{return childlist}
+    fun getlist():ArrayList<Child>{return childlist}
 
     inner class EditListener(var index: Int) : TextWatcher {
         override fun afterTextChanged(s: Editable?) {

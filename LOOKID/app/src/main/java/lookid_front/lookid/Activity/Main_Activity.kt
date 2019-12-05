@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
+import android.webkit.WebSettings
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main_content.*
@@ -21,7 +22,7 @@ import lookid_front.lookid.Control.User_Control
 import lookid_front.lookid.Dialog.SignOut_Dialog
 import lookid_front.lookid.Dialog.Exit_Dialog
 import lookid_front.lookid.Entity.Reservation_Entity
-import lookid_front.lookid.Entity.User_Entity
+import lookid_front.lookid.Entity.User
 import lookid_front.lookid.R
 import org.json.JSONObject
 
@@ -47,16 +48,26 @@ class Main_Activity : AppCompatActivity() {
             main_reslist_RecView.layoutManager = LinearLayoutManager(applicationContext)
 
             //회원정보 초기화
-            User_Control(applicationContext).set_user(User_Entity("hong10","홍홍택","010-1234-5678","honggildong@naver.com"
+            User_Control(applicationContext).set_user(User("hong10","홍홍택","010-1234-5678","honggildong@naver.com"
                     ,"서울시 ","농협","51230123","홍홍택"))
 
             main_id_TextView.text = User_Control(applicationContext).get_user().id
 
             //main_missing_child_WebView.webViewClient(WebViewClient())
             val webSettings = main_missing_child_WebView.settings
-            webSettings.javaScriptEnabled = true
+            main_missing_child_WebView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+            main_missing_child_WebView.settings.javaScriptEnabled = true
+            main_missing_child_WebView.settings.useWideViewPort = true
+            main_missing_child_WebView.settings.setSupportZoom(true)
+            main_missing_child_WebView.settings.defaultZoom = WebSettings.ZoomDensity.FAR
+            main_missing_child_WebView.settings.loadWithOverviewMode = true
 
-            main_missing_child_WebView.loadUrl("http://a6d98d12.ngrok.io/web/childCustom")
+
+            //main_missing_child_WebView.settings.setdefaultZoom(WebSettings.ZoomDensity.FAR)
+
+
+
+            main_missing_child_WebView.loadUrl("http://39dc50d5.ngrok.io/web/childCustom")
         }
 
         //사용자가 예약한 날짜가 오늘인지 확인 후 실행 activity 결정

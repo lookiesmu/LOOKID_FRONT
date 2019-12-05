@@ -15,13 +15,13 @@ data class Reservation_Entity(
         var deposit: Int, //보증금
         var wb_num: String, //운송장 번호
         var state: Int, //예약 상태 (1 입금 대기 2 예약 완료 3 배송 중 4 수령 완료 5 반납 대기 6 반납 완료 7 취소 신청 8 환불 완료)
-        var group_list: ArrayList<Group_Entity>, //예약 그룹 리스트
-        var user: User_Entity //예약자 정보 (!어플리케이션의 사용자 정보와 다름), var wb_num: kotlin.Int){}
+        var group_list: ArrayList<Group>, //예약 그룹 리스트
+        var user: User //예약자 정보 (!어플리케이션의 사용자 정보와 다름), var wb_num: kotlin.Int){}
 ) : Serializable{
     constructor() : this(0, "", "", "", "", 0, 0, 0, 0, "",0,
-            arrayListOf<Group_Entity>(), User_Entity())
+            arrayListOf<Group>(), User())
     constructor(resname : String, s_date : String, e_date : String, state : Int) : this(0, resname, "", s_date, e_date,
-            0, 0, 0, 0, "",state, arrayListOf<Group_Entity>(), User_Entity())
+            0, 0, 0, 0, "",state, arrayListOf<Group>(), User())
 
     fun null_res():Boolean{
         if(r_name.isEmpty() || r_date.isEmpty() || s_date.isEmpty() || e_date.isEmpty() || cost == 0

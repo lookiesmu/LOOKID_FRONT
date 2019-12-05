@@ -2,7 +2,7 @@ package lookid_front.lookid.Entity
 
 import java.io.Serializable
 
-data class Child_Entity(
+data class Child(
         var c_pid: Int, //피보호자 인덱스
         var name: String, //피보호자 이름
         var x: Double, //x좌표

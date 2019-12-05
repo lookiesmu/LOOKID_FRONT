@@ -2,7 +2,7 @@ package lookid_front.lookid.Control
 
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
-import lookid_front.lookid.Entity.User_Entity
+import lookid_front.lookid.Entity.User
 
 class User_Control(context: Context){
     val sharedPreferences  = context.getSharedPreferences("User_Info", MODE_PRIVATE)
@@ -10,7 +10,7 @@ class User_Control(context: Context){
 
     fun set_token(token : String) {editPreferences.putString("token",token).apply()}
     fun set_auto_login(auto_login : Boolean) {editPreferences.putBoolean("auto_login",auto_login).apply()}
-    fun set_user(user : User_Entity) {
+    fun set_user(user : User) {
         editPreferences.putString("id",user.id)
         editPreferences.putString("name",user.name)
         editPreferences.putString("phone",user.phone)
@@ -24,8 +24,8 @@ class User_Control(context: Context){
 
     fun get_token() : String? { return sharedPreferences.getString("token",null)}
     fun get_auto_login() : Boolean { return sharedPreferences.getBoolean("auto_login",false)}
-    fun get_user() : User_Entity{
-        var user = User_Entity(
+    fun get_user() : User{
+        var user = User(
                 sharedPreferences.getString("id",""), sharedPreferences.getString("name", ""), sharedPreferences.getString("phone", "")
                 , sharedPreferences.getString("email", ""), sharedPreferences.getString("address", ""),
                 sharedPreferences.getString("bank_name", "")

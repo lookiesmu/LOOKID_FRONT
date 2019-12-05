@@ -17,14 +17,14 @@ import lookid_front.lookid.Control.Okhttp
 import lookid_front.lookid.Control.User_Control
 import lookid_front.lookid.Dialog.Address_Dialog
 import lookid_front.lookid.Dialog.Bank_Dialog
-import lookid_front.lookid.Entity.User_Entity
+import lookid_front.lookid.Entity.User
 import lookid_front.lookid.R
 import org.json.JSONObject
 
 class UserInfo_Activity : AppCompatActivity() {
     var editmode : Boolean = false
     var bank_list = arrayOf("")
-    var user_upload : User_Entity? = null
+    var user_upload : User? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +39,7 @@ class UserInfo_Activity : AppCompatActivity() {
             editmode = false
             val editary = arrayListOf<View>(userinfo_name_EditText, userinfo_phone_EditText, userinfo_email_EditText,
                     userinfo_addressDet_EditText, userinfo_bank_number_EditText, userinfo_bank_holder_EditText, userinfo_findadd_Button)
-            var user : User_Entity = User_Control(applicationContext).get_user()
+            var user : User = User_Control(applicationContext).get_user()
 
             for(i in 0 until editary.size)
                 editary[i].isEnabled = false
@@ -70,7 +70,7 @@ class UserInfo_Activity : AppCompatActivity() {
         fun user_modfiy_go(){
             if(edit_check()){
                 //0. User init
-                val user : User_Entity = User_Control(applicationContext).get_user()
+                val user : User = User_Control(applicationContext).get_user()
 
                 user.name = userinfo_name_EditText.text.toString()
                 user.phone = userinfo_phone_EditText.text.toString()
@@ -134,7 +134,7 @@ class UserInfo_Activity : AppCompatActivity() {
             address_Dialog.show()
         }
 
-        fun PUT_user_modify(user : User_Entity){
+        fun PUT_user_modify(user : User){
             val url = getString(R.string.server_url)
             user_upload = user
             asynctask().execute("0",url)

@@ -16,12 +16,12 @@ import lookid_front.lookid.Control.Okhttp
 import lookid_front.lookid.Control.Json
 import lookid_front.lookid.Dialog.Address_Dialog
 import lookid_front.lookid.Dialog.Bank_Dialog
-import lookid_front.lookid.Entity.User_Entity
+import lookid_front.lookid.Entity.User
 import lookid_front.lookid.R
 import org.json.JSONObject
 
 class SignUp_Activity : AppCompatActivity() {
-    var user : User_Entity? = null
+    var user : User? = null
     var checkId : Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -190,7 +190,7 @@ class SignUp_Activity : AppCompatActivity() {
                     val bank_number = signup_bank_number_EditText.text.toString()
                     val bank_holder = signup_bank_holder_EditText.text.toString()
                     val pw = signup_pw2_EditText.text.toString()
-                    user = User_Entity(id,name,phone,email,address,bank_name,bank_number,bank_holder)
+                    user = User(id,name,phone,email,address,bank_name,bank_number,bank_holder)
                     user!!.address_detail = address_detail
 
                     SignUp_Control().POST_SignUp(pw)

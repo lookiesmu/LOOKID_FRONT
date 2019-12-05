@@ -14,13 +14,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import lookid_front.lookid.Activity.ResInfo_Activity
-import lookid_front.lookid.Entity.Group_Entity
+import lookid_front.lookid.Entity.Group
 import lookid_front.lookid.R
 import lookid_front.lookid.Activity.Reservation_Activity
-import lookid_front.lookid.Entity.Admin_Entity
+import lookid_front.lookid.Entity.Admin
 import org.json.JSONObject
 
-class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity>) : RecyclerView.Adapter<Group_adapter.holder>() {
+class Group_adapter(val context: Context, val grouplist : ArrayList<Group>) : RecyclerView.Adapter<Group_adapter.holder>() {
     var child_adapter : Child_adapter = Child_adapter(context)
     var checked_list : ArrayList<Boolean> = arrayListOf<Boolean>(false)
     var child_num_list : ArrayList<Int> = arrayListOf<Int>(0)
@@ -28,7 +28,7 @@ class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity
     val textWatcher_ary = arrayListOf<EditListener>()
     var group_state : Boolean = true
     var activity : String = ""
-    constructor(context: Context, grouplist: ArrayList<Group_Entity>, group_state : Boolean, activity : String) : this(context, grouplist){
+    constructor(context: Context, grouplist: ArrayList<Group>, group_state : Boolean, activity : String) : this(context, grouplist){
         this.group_state = group_state
         this.activity = activity
     }
@@ -51,7 +51,7 @@ class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity
         val child_CheckBox = view.findViewById<CheckBox>(R.id.res_group_child_CheckBox)
 
 
-        fun bind(group : Group_Entity, context : Context, id : Int) {
+        fun bind(group : Group, context : Context, id : Int) {
             if(!group_state){ //변경 불가능
                 name_EditText.isEnabled = false
                 child_Button.isEnabled = false
@@ -62,8 +62,9 @@ class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity
             }
             val index = id
             Log.d("Res_Group","$index + 번째 그룹이 바인드됨")
-            val admin_adapter = Admin_adapter(context, grouplist[index].admin_list)
+            val admin_adapter = Admin_adapter(context, grouplist[index].admin_list,true)
             adminlist_RecView.adapter = admin_adapter
+            adminlist_RecView.setItemViewCacheSize(20)
             if(index < grouplist.size)
                 name_EditText.setText(group.name)
             for(i in 0 until 10)
@@ -95,7 +96,7 @@ class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity
         }
         checked_list.add(false)
         child_num_list.add(0);
-        grouplist.add(Group_Entity(0, arrayListOf(), arrayListOf(),""))
+        grouplist.add(Group(0, arrayListOf(), arrayListOf(),""))
         notifyItemChanged(grouplist.size)
     }
     //네트워크에 GET 방식으로 id를 이용해 관리자를 검색하는 함수
@@ -142,7 +143,7 @@ class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity
                     if(!editText!!.text.isNullOrEmpty()){
                         val id = editText!!.text.toString()
                         //id를 이용 검색
-                        admin_adapter!!.add(Admin_Entity(0,id,id))
+                        admin_adapter!!.add(Admin(0,id,id))
                         //GET_admin(id)
                         editText!!.setText("")
                     }

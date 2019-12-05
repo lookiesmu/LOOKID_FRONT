@@ -2,7 +2,7 @@ package lookid_front.lookid.Entity
 
 import java.io.Serializable
 
-data class User_Entity(
+data class User(
         var id: String?, //아이디
         var name: String?, //사용자 이름
         var phone: String?, //사용자 번호

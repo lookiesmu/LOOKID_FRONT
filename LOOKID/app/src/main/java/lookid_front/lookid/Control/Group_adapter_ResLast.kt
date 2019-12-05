@@ -9,10 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import lookid_front.lookid.Entity.Group_Entity
+import lookid_front.lookid.Entity.Group
 import lookid_front.lookid.R
 
-class Group_adapter_ResLast(val context: Context, val grouplist : ArrayList<Group_Entity>) : RecyclerView.Adapter<Group_adapter_ResLast.holder>() {
+class Group_adapter_ResLast(val context: Context, val grouplist : ArrayList<Group>) : RecyclerView.Adapter<Group_adapter_ResLast.holder>() {
     var child_adapter : Child_adapter = Child_adapter(context)
     var dialog : AlertDialog? = null
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): holder {
@@ -27,7 +27,7 @@ class Group_adapter_ResLast(val context: Context, val grouplist : ArrayList<Grou
         val child_Button = view.findViewById<Button>(R.id.reslast_group_child_Button)
         val adminlist_RecView = view.findViewById<RecyclerView>(R.id.reslast_group_admin_RecView)
 
-        fun bind(group : Group_Entity, context : Context, id : Int) {
+        fun bind(group : Group, context : Context, id : Int) {
             val index = id
             val admin_adapter = Admin_adapter(context, grouplist[index].admin_list)
             name_TextView.setText(group.name)

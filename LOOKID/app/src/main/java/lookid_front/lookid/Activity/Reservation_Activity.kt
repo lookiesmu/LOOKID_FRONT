@@ -10,13 +10,12 @@ import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
 import android.widget.*
-import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_reservation.*
 import lookid_front.lookid.Control.*
 import lookid_front.lookid.Dialog.Address_Dialog
 import lookid_front.lookid.Dialog.Bank_Dialog
 import lookid_front.lookid.Dialog.Basic_Dialog
-import lookid_front.lookid.Entity.Group_Entity
+import lookid_front.lookid.Entity.Group
 import lookid_front.lookid.Entity.Reservation_Entity
 import lookid_front.lookid.R
 import java.text.DecimalFormat
@@ -29,7 +28,7 @@ class Reservation_Activity : AppCompatActivity() {
     var devicenum : Int = 0;
     var bank_list = arrayOf("")
     var Reservation_Entity = Reservation_Entity()
-    var group_list = arrayListOf<Group_Entity>(Group_Entity())
+    var group_list = arrayListOf<Group>(Group())
     lateinit var group_Adapter : Group_adapter
     var calendar : Calendar = Calendar.getInstance()
     val dateFormat = SimpleDateFormat(Date_Control().dateFormat, Locale.KOREA)

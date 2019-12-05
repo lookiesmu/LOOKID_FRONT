@@ -2,7 +2,7 @@ package lookid_front.lookid.Control
 
 import com.google.gson.Gson
 import lookid_front.lookid.Entity.Reservation_Entity
-import lookid_front.lookid.Entity.User_Entity
+import lookid_front.lookid.Entity.User
 import org.json.JSONObject
 
 class Json(){
@@ -14,7 +14,7 @@ class Json(){
         return jsonObject.toString()
     }
 
-    fun signup(user : User_Entity?,pw : String) : String{
+    fun signup(user : User?, pw : String) : String{
         jsonObject.put("id", user!!.id)
         jsonObject.put("pw",pw)
         jsonObject.put("name", user!!.name)
@@ -28,7 +28,7 @@ class Json(){
         return jsonObject.toString()
     }
 
-    fun modify_user(user: User_Entity?) :String{
+    fun modify_user(user: User?) :String{
         jsonObject.put("name", user!!.name)
         jsonObject.put("phone", user!!.phone)
         jsonObject.put("mail", user!!.email)
