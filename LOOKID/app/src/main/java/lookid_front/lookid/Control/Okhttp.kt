@@ -1,34 +1,37 @@
 package lookid_front.lookid.Control
 
-import android.app.Activity
-import android.app.Application
 import android.content.Context
-import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import okhttp3.*
-import org.json.JSONObject
 import java.io.IOException
+import java.util.concurrent.TimeUnit
 
 class Okhttp() {
     var context : Context? = null
+    val client : OkHttpClient = OkHttpClient()
+    lateinit var response: Response
+    var token : String? = null
+    init {
+        client.newBuilder()
+                .connectTimeout(5,TimeUnit.SECONDS)
+                .readTimeout(5,TimeUnit.SECONDS)
+                .writeTimeout(5,TimeUnit.SECONDS)
+                .build()
+    }
     constructor(context : Context) : this(){
         this.context = context
+        token = User_Control(context).get_token()
     }
 
-    fun GET(client: OkHttpClient, url:String):String{
-        var response: Response
-        var token : String? = null
-
-        if(context != null)
-            token = User_Control(context!!).get_token()
-
+    fun GET(url: String):String{
         try {
-            var builder= Request.Builder()
+            val builder= Request.Builder()
                     .url(url)
                     .get()
             if(!token.isNullOrEmpty())
-                builder.header("Authorization",token)
+                builder.header("Authorization",token!!)
 
-            var request = builder.build()
+            val request = builder.build()
             response = client.newCall(request).execute()
             return response.body()?.string()!!
         }catch (e: IOException){
@@ -36,49 +39,33 @@ class Okhttp() {
         }
     }
 
-    fun POST(client : OkHttpClient, url: String, jsonbody:String):String{
-        var response: Response
-        var token : String? = null
-
-        if(context != null)
-            token = User_Control(context!!).get_token()
-
+    fun POST(url: String, jsonbody: String):String{
         try {
-            var builder= Request.Builder()
+            val builder= Request.Builder()
                     .url(url)
-                    .post(RequestBody.create(MediaType.parse("application/json"), jsonbody!!))
-
+                    .post(RequestBody.create(MediaType.parse("application/json"), jsonbody))
             if(!token.isNullOrEmpty())
-                builder.header("Authorization",token)
-
-            var request = builder.build()
+                builder.header("Authorization",token!!)
+            val request = builder.build()
             response = client.newCall(request).execute()
-
             if(!response.header("Authorization").isNullOrEmpty())
                 User_Control(context!!).set_token(response.header("Authorization").toString())
-
             return response.body()?.string()!!
         }catch (e: IOException){
             return e.toString()
         }
     }
 
-    fun DELETE(client: OkHttpClient, url: String, jsonbody: String):String{
-        var response: Response
-        var token : String? = null
-
-        if(context != null)
-            token = User_Control(context!!).get_token()
-
+    fun DELETE(url: String, jsonbody: String):String{
         try {
-            var builder= Request.Builder()
+            val builder= Request.Builder()
                     .url(url)
-                    .delete(RequestBody.create(MediaType.parse("application/json"), jsonbody!!))
-
+                    .delete(RequestBody.create(MediaType.parse("application/json"), jsonbody))
+            Log.d("Okhttp",jsonbody)
             if(!token.isNullOrEmpty())
-                builder.header("Authorization",token)
+                builder.header("Authorization",token!!)
 
-            var request = builder.build()
+            val request = builder.build()
             response = client.newCall(request).execute()
             return response.body()?.string()!!
         }catch (e: IOException){
@@ -86,22 +73,15 @@ class Okhttp() {
         }
     }
 
-    fun PUT(client: OkHttpClient, url:String, jsonbody: String):String{
-        var response: Response
-        var token : String? = null
-
-        if(context != null)
-            token = User_Control(context!!).get_token()
-
+    fun PUT(url: String, jsonbody: String):String{
         try {
-            var builder= Request.Builder()
+            val builder= Request.Builder()
                     .url(url)
-                    .put(RequestBody.create(MediaType.parse("application/json"), jsonbody!!))
-
+                    .put(RequestBody.create(MediaType.parse("application/json"), jsonbody))
             if(!token.isNullOrEmpty())
-                builder.header("Authorization",token)
+                builder.header("Authorization",token!!)
 
-            var request = builder.build()
+            val request = builder.build()
             response = client.newCall(request).execute()
             return response.body()?.string()!!
         }catch (e: IOException){
