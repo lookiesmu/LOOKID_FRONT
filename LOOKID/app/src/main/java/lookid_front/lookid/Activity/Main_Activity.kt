@@ -1,6 +1,7 @@
 package lookid_front.lookid.Activity
 
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v4.view.GravityCompat
@@ -33,7 +34,7 @@ class Main_Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        Log.d("Main_Activity", "oncreate")
         Main_Control().init_Activity()
         Main_Control().GET_checkdate()
     }
@@ -52,14 +53,13 @@ class Main_Activity : AppCompatActivity() {
             //회원정보 초기화
             User_Control(applicationContext).set_user(User_Entity("hong10","홍홍택","010-1234-5678","honggildong@naver.com"
                     ,"서울시 ","농협","51230123","홍홍택"))
-
             main_id_TextView.text = User_Control(applicationContext).get_user().id
 
             //main_missing_child_WebView.webViewClient(WebViewClient())
             val webSettings = main_missing_child_WebView.settings
             webSettings.javaScriptEnabled = true
 
-            main_missing_child_WebView.loadUrl("http://a6d98d12.ngrok.io/web/childCustom")
+            main_missing_child_WebView.loadUrl("")
         }
 
         //사용자가 예약한 날짜가 오늘인지 확인 후 실행 activity 결정

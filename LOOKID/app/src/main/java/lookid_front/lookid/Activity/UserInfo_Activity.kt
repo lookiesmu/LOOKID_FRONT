@@ -70,7 +70,7 @@ class UserInfo_Activity : AppCompatActivity() {
 
         fun user_modfiy_go(){
             if(edit_check()){
-                //0. User init
+                //0. User set_up
                 val user : User_Entity = User_Control(applicationContext).get_user()
 
                 user.name = userinfo_name_EditText.text.toString()

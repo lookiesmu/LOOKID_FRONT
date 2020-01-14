@@ -15,6 +15,7 @@ import lookid_front.lookid.R
 
 class Child_adapter(val context: Context) : RecyclerView.Adapter<Child_adapter.holder>() {
     var res_state : Boolean = false
+    //바꾼부분
     var childlist = ArrayList<String>()
     val textWatcher_ary = arrayListOf<EditListener>()
     constructor(context : Context, res_state : Boolean) : this(context){
