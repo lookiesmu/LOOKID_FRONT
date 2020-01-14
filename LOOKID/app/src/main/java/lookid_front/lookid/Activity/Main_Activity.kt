@@ -24,119 +24,117 @@ import lookid_front.lookid.Dialog.Exit_Dialog
 import lookid_front.lookid.Entity.Reservation_Entity
 import lookid_front.lookid.Entity.User
 import lookid_front.lookid.R
+import org.json.JSONArray
 import org.json.JSONObject
 
 class Main_Activity : AppCompatActivity() {
-    lateinit var res_adapter : Res_adapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        Main_Control().init_Activity()
-        Main_Control().GET_checkdate()
     }
-
+    override fun onResume() {
+        Main_Control().init_Activity()
+        super.onResume()
+    }
     inner class Main_Control{
         //액티비티 초기화
         fun init_Activity(){
+            GET_checkdate()
+            GET_res_list()
+            //네비게이션 메뉴 초기화
             val toggle = ActionBarDrawerToggle(
                     this@Main_Activity, main_drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
             main_drawer_layout.addDrawerListener(toggle)
             toggle.syncState()
-            res_adapter = Res_adapter(this@Main_Activity, arrayListOf(Reservation_Entity("롯데월드","2019-09-29","2019-09-30",1)))
-            main_reslist_RecView.adapter = res_adapter
-            main_reslist_RecView.layoutManager = LinearLayoutManager(applicationContext)
-
             //회원정보 초기화
-            User_Control(applicationContext).set_user(User("hong10","홍홍택","010-1234-5678","honggildong@naver.com"
-                    ,"서울시 ","농협","51230123","홍홍택"))
-
             main_id_TextView.text = User_Control(applicationContext).get_user().id
+            init_WepView()
+        }
 
-            //main_missing_child_WebView.webViewClient(WebViewClient())
-            val webSettings = main_missing_child_WebView.settings
+        fun init_WepView(){
             main_missing_child_WebView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
             main_missing_child_WebView.settings.javaScriptEnabled = true
             main_missing_child_WebView.settings.useWideViewPort = true
             main_missing_child_WebView.settings.setSupportZoom(true)
             main_missing_child_WebView.settings.defaultZoom = WebSettings.ZoomDensity.FAR
             main_missing_child_WebView.settings.loadWithOverviewMode = true
-
-
-            //main_missing_child_WebView.settings.setdefaultZoom(WebSettings.ZoomDensity.FAR)
-
-
-
-            main_missing_child_WebView.loadUrl("http://39dc50d5.ngrok.io/web/childCustom")
+            var url = "${getString(R.string.server_url)}${getString(R.string.main_child_ad)}"
+            main_missing_child_WebView.loadUrl(url)
         }
-
         //사용자가 예약한 날짜가 오늘인지 확인 후 실행 activity 결정
-        fun GET_checkdate(){
+        fun GET_checkdate(){ //0
             val url = getString(R.string.server_url)+getString(R.string.check_date)
             //asynctask().execute(url)
         }
-
-        fun GET_signout(){
-            SignOut_Dialog(this@Main_Activity,"로그아웃","정말로 로그아웃 하시겠습니까?").show()
+        fun GET_signout() { //1
+            SignOut_Dialog(this@Main_Activity, "로그아웃", "정말로 로그아웃 하시겠습니까?").show()
             val url = getString(R.string.server_url) + getString(R.string.sign_out)
+            asynctask().execute("1",url)
+        }
+        fun GET_res_list(){ //2
+            val url = getString(R.string.server_url) + getString(R.string.selete_res_list)
+            asynctask().execute("2",url)
         }
     }
     inner class asynctask : AsyncTask<String, Void, String>(){
         var state : Int = -1
-
+        var url = ""
         override fun doInBackground(vararg params: String): String {
             state = params[0].toInt()
-            var url = params[1]
-            var response = Okhttp().GET(url)
-
-            when(state){
-                0->{
-
-                }
-                1->{
-
-                }
-            }
-
-            return response
+            url = params[1]
+            return Okhttp(applicationContext).GET(url)
         }
         override fun onPostExecute(response: String) {
             //넘어온 값이 없을 때 로그 찍고 리턴
+            Log.d("Main_Activity", url)
             if(response.isNullOrEmpty()) {
                 Toast.makeText(applicationContext,"서버 문제 발생", Toast.LENGTH_SHORT).show()
                 Log.d("Main_Activity", "null in")
                 return
             }
+            Log.d("Main_Activity",response)
             //response 값이 json문이 아니면 통신 오류 메세지 출력
             if(!Json().isJson(response)){
                 Toast.makeText(applicationContext,"네트워크 통신 오류", Toast.LENGTH_SHORT).show()
-                Log.d("Main_Activity",response)
                 return
             }
-
-            var jsonObj = JSONObject(response)
-            if(!jsonObj.getInt("rv_pid").toString().isEmpty())
-                startActivity(Intent(applicationContext, Map_Activity::class.java).putExtra("rv_pid",jsonObj.getInt("rv_pid")))
+            when(state){
+                0->{ //GET_check_date
+                    val jsonObj = JSONObject(response)
+                    if(!jsonObj.getInt("rv_pid").toString().isEmpty())
+                        startActivity(Intent(applicationContext, Map_Activity::class.java).putExtra("rv_pid",jsonObj.getInt("rv_pid")).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP))
+            }
+                2->{
+                    val jsonAry = JSONArray(response)
+                    val resList : ArrayList<Reservation_Entity> = arrayListOf()
+                    for (i in 0 until jsonAry.length()){
+                        val jsonObj : JSONObject = jsonAry.getJSONObject(i)
+                        resList.add(Reservation_Entity(jsonObj.getInt("rv_pid"),jsonObj.getString("r_name"),jsonObj.getLong("s_date"),
+                                jsonObj.getLong("e_date"),jsonObj.getInt("state")))
+                    }
+                    main_reslist_RecView.adapter = Res_adapter(this@Main_Activity, resList)
+                }
+            }
         }
     }
-
     fun main_Click_Listener(view : View){
         when(view.id){
-            R.id.main_reservation_View -> startActivity(Intent(applicationContext, Reservation_Activity::class.java))
-            R.id.main_map_View ->startActivity(Intent(applicationContext, Map_Activity::class.java))
-            R.id.main_checkRes_View ->startActivity(Intent(applicationContext, ResList_Activity::class.java))
+            R.id.main_reservation_View -> startActivity(Intent(applicationContext, Reservation_Activity::class.java).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP))
+            R.id.main_map_View ->startActivity(Intent(applicationContext, Map_Activity::class.java).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP))
+            R.id.main_checkRes_View ->startActivity(Intent(applicationContext, ResList_Activity::class.java).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP))
             R.id.main_signout_Button ->Main_Control().GET_signout()
             R.id.main_logout_View -> Main_Control().GET_signout()
-            R.id.main_userinfo_Button -> startActivity(Intent(applicationContext, UserInfo_Activity::class.java))
+            R.id.main_userinfo_Button -> startActivity(Intent(applicationContext, UserInfo_Activity::class.java).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP))
         }
     }
-
     override fun onBackPressed() {
-        if (main_drawer_layout.isDrawerOpen(GravityCompat.START)) {
+        if (main_drawer_layout.isDrawerOpen(GravityCompat.START))
             main_drawer_layout.closeDrawer(GravityCompat.START)
-        } else {
+        else
             Exit_Dialog(this).create().show()
-            //super.onBackPressed()
-        }
+    }
+    override fun onPause() {
+        asynctask().cancel(true)
+        super.onPause()
     }
 }

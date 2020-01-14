@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import lookid_front.lookid.Activity.SignIn_Activity
+import lookid_front.lookid.Control.User_Control
 import lookid_front.lookid.R
 
 class SignOut_Dialog(val context: Context, val title : String, val message : String){
@@ -15,6 +16,7 @@ class SignOut_Dialog(val context: Context, val title : String, val message : Str
             .setMessage(message)
             .setPositiveButton("확인", DialogInterface.OnClickListener { _, _ ->
                 context.startActivity(Intent(context,SignIn_Activity::class.java))
+                User_Control(context).set_auto_login(false)
                 act.finish()
             })
             .setNegativeButton("취소",null)

@@ -104,8 +104,7 @@ class Reservation_Activity : AppCompatActivity() {
             }
             //예약정보 초기화
             var user = User_Control(applicationContext).get_user()
-            //Reservation_Entity!!.user!!.id = user.id
-            Reservation_Entity.user.id = "hyoseung"
+            Reservation_Entity!!.user!!.id = user.id
             Reservation_Entity.receipt_item = 0
             Reservation_Entity.return_item = 0
             //스피너 초기화
@@ -117,7 +116,6 @@ class Reservation_Activity : AppCompatActivity() {
             //그룹 리사이클러뷰 초기화
             group_Adapter = Group_adapter(this@Reservation_Activity,group_list)
             res_grouplist_RecView.adapter = group_Adapter
-            res_grouplist_RecView.layoutManager = LinearLayoutManager(applicationContext)
             res_grouplist_RecView.setItemViewCacheSize(100)
         }
 
@@ -187,10 +185,10 @@ class Reservation_Activity : AppCompatActivity() {
             Reservation_Entity.user.bank_num = res_bank_number_EditText.text.toString()
             Reservation_Entity.user.bank_holder = res_bank_holder_EditText.text.toString()
             Reservation_Entity.user.bank_name = userinfo_bank_name_TextView.text.toString()
-            Reservation_Entity.r_date = dateFormat.format(Date())
-            Reservation_Entity.s_date = res_startdate_TextView.text.toString()
-            Reservation_Entity.e_date = res_enddate_TextView.text.toString()
-            Reservation_Entity.user.address = res_address_EditText.text.toString() + res_addressDet_EditText.text.toString()
+            Reservation_Entity.r_date = Date().time
+            Reservation_Entity.s_date = dateFormat.parse(res_startdate_TextView.text.toString()).time
+            Reservation_Entity.e_date = dateFormat.parse(res_enddate_TextView.text.toString()).time
+            Reservation_Entity.user.address = res_address_EditText.text.toString()
             Reservation_Entity.user.address_detail = res_addressDet_EditText.text.toString()
             Reservation_Entity.state = 1
             Reservation_Entity.group_list = group_Adapter.grouplist
@@ -231,22 +229,22 @@ class Reservation_Activity : AppCompatActivity() {
             R.id.res_resvation_Button ->{
                 Reservation_Control().pay_init()
                 if(Reservation_Control().res_init()) {
+                    Log.d("Res_Acitivity",Json().reservation(Reservation_Entity))
                     Toast.makeText(applicationContext, "예약 정보를 모두 입력해주세요", Toast.LENGTH_LONG).show()
                     return
                 }
+                Log.d("Res_Acitivity",Json().reservation(Reservation_Entity))
                 val intent = Intent(applicationContext, ReservationLast_Activity::class.java)
                 intent.putExtra("res", Reservation_Entity)
                 intent.putExtra("res_devicenum" , group_Adapter.getDevice_num())
                 intent.putExtra("res_useday" , useDay)
                 startActivity(intent)
-                Log.d("Res_Acitivity",Json().reservation(Reservation_Entity))
             }
             R.id.res_bank_name_Button->Reservation_Control().Dialog_bankname()
             R.id.res_startdate_TextView ->Reservation_Control().Dialog_DatePicker(0)
             R.id.res_enddate_TextView ->Reservation_Control().Dialog_DatePicker(1)
         }
     }
-
     override fun onBackPressed() {
         Reservation_Control().Dialog_cancel()
     }

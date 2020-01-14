@@ -29,6 +29,7 @@ class ReservationLast_Activity : AppCompatActivity(){
     lateinit var reservation_Entity : Reservation_Entity
     var devicenum : Int = 0
     lateinit var group_Adapter : Group_adapter_ResLast
+    val dateFormat = SimpleDateFormat(Date_Control().dateFormat, Locale.KOREA)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,8 +50,8 @@ class ReservationLast_Activity : AppCompatActivity(){
             reslast_name_TextView.text = reservation_Entity.user.name
             reslast_phone_TextView.text = reservation_Entity.user.phone
             reslast_bank_TextView.text = reservation_Entity.user.bank_toString()
-            reslast_startdate_TextView.text = reservation_Entity.s_date
-            reslast_enddate_TextView.text = reservation_Entity.e_date
+            reslast_startdate_TextView.text = dateFormat.format(reservation_Entity.s_date)
+            reslast_enddate_TextView.text = dateFormat.format(reservation_Entity.e_date)
             reslast_address_TextView.text = (reservation_Entity.user.address + " " +reservation_Entity.user.address_detail)
             reslast_devicenum_TextView.text = devicenum.toString()
 
@@ -72,7 +73,6 @@ class ReservationLast_Activity : AppCompatActivity(){
             //그룹 리사이클러뷰 초기화
             group_Adapter = Group_adapter_ResLast(this@ReservationLast_Activity,reservation_Entity.group_list)
             reslast_grouplist_RecView.adapter = group_Adapter
-            reslast_grouplist_RecView.layoutManager = LinearLayoutManager(applicationContext)
             reslast_grouplist_RecView.setItemViewCacheSize(100)
         }
 
@@ -92,31 +92,33 @@ class ReservationLast_Activity : AppCompatActivity(){
                 finish()
             },true).show()
         }
+        fun POST_res(){
+            val url = getString(R.string.server_url)+getString(R.string.reservation)
+            Log.d("ResLast_Activity",Json().reservation(reservation_Entity))
+            asynctask().execute(url,Json().reservation(reservation_Entity))
+        }
     }
     inner class asynctask : AsyncTask<String, Void, String>(){
+        var url = ""
         override fun doInBackground(vararg params: String): String {
             //POST_예약하기 (url, jsonStr)
-            val url = params[0]
+            url = params[0]
             return Okhttp(applicationContext).POST(url,params[1])
         }
-
-
         override fun onPostExecute(response: String) {
             if(response.isEmpty()) {
                 Log.d("ResLast_Activity", "null")
                 return
             }
+            Log.d("ResLast_Activity", url)
+            Log.d("ResLast_Activity", response)
             if(!Json().isJson(response)){
                 Toast.makeText(applicationContext,"네트워크 통신 오류", Toast.LENGTH_SHORT).show()
-                Log.d("ResLast_Activity", response)
                 return
             }
             val json  = JSONObject(response)
-            val success = json.getInt("success")
-            if(success == 1){
-                Toast.makeText(applicationContext,"예약 성공", Toast.LENGTH_SHORT).show()
-                finish()
-            }
+            if(json.getBoolean("success"))
+                ResLast_Control().Dialog_res()
             else
                 Toast.makeText(applicationContext,"예약 실패", Toast.LENGTH_SHORT).show()
         }
@@ -127,9 +129,13 @@ class ReservationLast_Activity : AppCompatActivity(){
             R.id.reslast_cancel_Button -> ResLast_Control().Dialog_cancel()
             R.id.reslast_payment_Button ->{
                 //서버에 포스트로 결제정보 보내기
-                ResLast_Control().Dialog_res()
+                ResLast_Control().POST_res()
             }
             R.id.reslast_refund_View-> Refund_Dialog(this).create().show()
         }
+    }
+    override fun onPause() {
+        asynctask().cancel(true)
+        super.onPause()
     }
 }

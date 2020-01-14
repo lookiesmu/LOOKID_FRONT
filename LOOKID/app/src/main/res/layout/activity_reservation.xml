@@ -482,6 +482,8 @@
                         android:enabled="false"
                         android:gravity="center_vertical"
                         android:hint="주소를 검색해주세요"
+                        android:maxLines="2"
+                        android:paddingRight="10dp"
                         android:singleLine="true"
                         android:textAllCaps="false"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
@@ -556,7 +558,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp" />
+                    android:layout_marginRight="10dp"
+                    app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
 
                 <Button
                     android:id="@+id/res_groupadd_Button"

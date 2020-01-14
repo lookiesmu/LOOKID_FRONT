@@ -1,6 +1,7 @@
 package lookid_front.lookid.Control
 
 import android.content.Context
+import android.util.Log
 import okhttp3.*
 import java.io.IOException
 import java.util.concurrent.TimeUnit
@@ -43,27 +44,24 @@ class Okhttp() {
             val builder= Request.Builder()
                     .url(url)
                     .post(RequestBody.create(MediaType.parse("application/json"), jsonbody))
-
             if(!token.isNullOrEmpty())
                 builder.header("Authorization",token!!)
-
             val request = builder.build()
             response = client.newCall(request).execute()
-
             if(!response.header("Authorization").isNullOrEmpty())
                 User_Control(context!!).set_token(response.header("Authorization").toString())
-
             return response.body()?.string()!!
         }catch (e: IOException){
             return e.toString()
         }
     }
 
-    fun DELETE(url: String):String{
+    fun DELETE(url: String, jsonbody: String):String{
         try {
             val builder= Request.Builder()
                     .url(url)
-                    .delete()
+                    .delete(RequestBody.create(MediaType.parse("application/json"), jsonbody))
+            Log.d("Okhttp",jsonbody)
             if(!token.isNullOrEmpty())
                 builder.header("Authorization",token!!)
 

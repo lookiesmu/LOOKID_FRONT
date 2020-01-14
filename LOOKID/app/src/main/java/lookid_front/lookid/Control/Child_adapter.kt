@@ -29,7 +29,7 @@ class Child_adapter(val context: Context) : RecyclerView.Adapter<Child_adapter.h
         return holder(view)
     }
     override fun getItemCount(): Int { return childlist.size }
-    override fun onBindViewHolder(p0: holder, p1: Int) { p0.bind(context,childlist[p1].name,p1)}
+    override fun onBindViewHolder(p0: holder, p1: Int) { p0.bind(context,childlist[p1].c_name,p1)}
 
     inner class holder(view: View) : RecyclerView.ViewHolder(view) {
         val childEditText = view.findViewById<EditText>(R.id.res_child_name_EditText)
@@ -40,7 +40,7 @@ class Child_adapter(val context: Context) : RecyclerView.Adapter<Child_adapter.h
             if(res_state)
                 childEditText.isEnabled = false
             if(index < itemCount) {
-                childEditText.setText(childlist[index].name)
+                childEditText.setText(childlist[index].c_name)
             }
             for(i in 0 until itemCount)
                 childEditText.removeTextChangedListener(textWatcher_ary[i])
@@ -51,7 +51,7 @@ class Child_adapter(val context: Context) : RecyclerView.Adapter<Child_adapter.h
         var str : String = ""
         var count = 0
         for(i in 0 until childlist.size){
-            if(childlist[i].name.isEmpty()){
+            if(childlist[i].c_name.isEmpty()){
                 str = str + (i + 1).toString() + ", "
                 count++
             }
@@ -97,10 +97,10 @@ class Child_adapter(val context: Context) : RecyclerView.Adapter<Child_adapter.h
         override fun afterTextChanged(s: Editable?) {
             if(!s.toString().isEmpty()) {
                 if(index < itemCount)
-                    childlist[index].name = s.toString()
+                    childlist[index].c_name = s.toString()
             }
             else {
-                childlist[index].name = ""
+                childlist[index].c_name = ""
             }
         }
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { }

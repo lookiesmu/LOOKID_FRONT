@@ -16,7 +16,6 @@ class ClearEditText : AppCompatEditText{
     lateinit var clearDrawable : Drawable
     var min_ems : Int? = null
     var max_ems : Int? = null
-
     init {
         create()
     }
@@ -30,9 +29,7 @@ class ClearEditText : AppCompatEditText{
         setHintTextColor(ContextCompat.getColor(context,R.color.LOOKID_second_ground))
         DrawableCompat.setTintList(clearDrawable,hintTextColors)
         clearDrawable.setBounds(0,0,clearDrawable.intrinsicWidth,clearDrawable.intrinsicHeight)
-
         setClearIconVisible(false)
-
         setOnTouchListener(touchListener())
         onFocusChangeListener = focusChangeListener()
     }

@@ -37,12 +37,12 @@ class Group_adapter_ResLast(val context: Context, val grouplist : ArrayList<Grou
     }
     //피보호자 리스트 다이얼로그를 띄워주는 함수
     fun Dialog_child(index : Int){
-        val builder = AlertDialog.Builder(this.context)
+        val builder = AlertDialog.Builder(this.context,R.style.DialogStyle_child)
         builder.setTitle("피보호자 목록")
         var inflater  = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         builder.setView(inflater.inflate(R.layout.dialog_res_childlist,null))
         builder.setPositiveButton("확인",null)
-        builder.setNegativeButton("취소",null)
+        //builder.setNegativeButton("취소",null)
         dialog = builder.create() as AlertDialog
         dialog!!.setOnShowListener(Dialog_Listener(index))
         dialog!!.show()

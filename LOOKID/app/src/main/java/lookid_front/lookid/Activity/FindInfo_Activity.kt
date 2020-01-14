@@ -12,7 +12,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_findinfo.*
-import kotlinx.android.synthetic.main.activity_findinfo.view.*
 import lookid_front.lookid.Control.Json
 import lookid_front.lookid.Control.Okhttp
 import lookid_front.lookid.R
@@ -77,14 +76,14 @@ class FindInfo_Activity : AppCompatActivity() {
             url = url.replace("{name}",name,false)
             url = url.replace("{phone}",phone,true)
             //Log.d("Findinfo_Activity",url)
-            Asynctask().execute("0",url)
+            asynctask().execute("0",url)
         }
 
         fun GET_find_pw(id : String, email : String){
             var url = getString(R.string.server_url) + getString(R.string.find_pw)
             url = url.replace("{id}",id)
             url = url.replace("{mail}",email)
-            Asynctask().execute("1",url)
+            asynctask().execute("1",url)
         }
 
         fun Dialog_findid(id : String){
@@ -104,34 +103,26 @@ class FindInfo_Activity : AppCompatActivity() {
         }
     }
 
-    inner class Asynctask : AsyncTask<String, Void, String>(){
+    inner class asynctask : AsyncTask<String, Void, String>(){
         var state : Int = -1 //state == 0 : GET_아이디 찾기, state == 1 : GET_비밀번호 찾기
+        var url = ""
         override fun doInBackground(vararg params: String): String {
             state = Integer.parseInt(params[0])
-            val url = params[1]
-            var response : String = ""
-
-            when (state){
-                0 -> response = Okhttp().GET(url)
-                1 -> response = Okhttp().GET(url)
-            }
-
-            return response
+            url = params[1]
+            return Okhttp().GET(url)
         }
-
         override fun onPostExecute(response: String) {
             if(response.isEmpty()){
                 Toast.makeText(applicationContext,"서버 오류 발생",Toast.LENGTH_SHORT).show()
                 Log.d("FindInfo_Activity","response is null")
                 return
             }
-
+            Log.d("FindInfo_Activity",url)
+            Log.d("FindInfo_Activity",response)
             if(!Json().isJson(response)){
                 Toast.makeText(applicationContext,"네트워크 통신 오류", Toast.LENGTH_SHORT).show()
-                Log.d("FindInfo_Activity",response)
                 return
             }
-
             val jsonObj = JSONObject(response)
             when (state){
                 0->{
@@ -149,12 +140,10 @@ class FindInfo_Activity : AppCompatActivity() {
             }
         }
     }
-
     override fun onPause() {
-        Asynctask().cancel(true)
+        asynctask().cancel(true)
         super.onPause()
     }
-
     //Activity 클릭 리스너
     fun findinfo_Click_Listener(view : View){
         when(view.id){

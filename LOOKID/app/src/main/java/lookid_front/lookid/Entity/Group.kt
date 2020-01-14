@@ -13,7 +13,7 @@ data class Group(
         if(child_list.size == 0 || admin_list.size == 0)
             return true
         for(i in 0 until child_list.size){
-            if(child_list[i].name.isNullOrEmpty())
+            if(child_list[i].c_name.isNullOrEmpty())
                 return true
         }
         for(i in 0 until admin_list.size){

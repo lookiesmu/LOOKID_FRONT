@@ -30,56 +30,46 @@ class SignUp_Activity : AppCompatActivity() {
 
         //Id_edittext 리스너 장착
         signup_id_EditText.addTextChangedListener(EditListener())
-
     }
 
     inner class SignUp_Control{
         fun edit_check() : Boolean{
             //필수 사항 EditText id값 array
-            val editArray = arrayListOf<Int>(R.id.signup_name_EditText, R.id.signup_pw_EditText, R.id.signup_pw2_EditText, R.id.signup_name_EditText,
+            val editArray = arrayListOf(R.id.signup_name_EditText, R.id.signup_pw_EditText, R.id.signup_pw2_EditText, R.id.signup_name_EditText,
                     R.id.signup_phone_EditText, R.id.signup_email_EditText)
-
-            //해당 EditText 값이 비었는지 체크
-            for(i in 0 until editArray.size){
-                val editText : EditText = findViewById(editArray[i])
+            for(i in editArray){//해당 EditText 값이 비었는지 체크
+                val editText : EditText = findViewById(i)
                 if(editText.text.isNullOrEmpty()) {
                     Toast.makeText(applicationContext,"필수 정보를 입력해주세요",Toast.LENGTH_SHORT).show()
                     return false
                 }
             }
-
             //1차 비밀번호와 2차 비밀번호 같은지 확인
             if(!signup_pw_EditText.text.toString().equals(signup_pw2_EditText.text.toString())){
                 Toast.makeText(applicationContext,"1차 2차 비밀번호가 다릅니다",Toast.LENGTH_SHORT).show()
                 return false
             }
-
             return true
         }
-
         fun GET_Check(id : String){
             val url = getString(R.string.server_url) + getString(R.string.check_id) + id
             asynctask().execute("0",url)
         }
-
         fun POST_SignUp(pw : String){
             val url = getString(R.string.server_url) + getString(R.string.sign_up)
             asynctask().execute("1",url,pw)
         }
-
         fun Dialog_Signup(){
-            var builder = AlertDialog.Builder(this@SignUp_Activity)
+            val builder = AlertDialog.Builder(this@SignUp_Activity)
             builder.setMessage("회원가입 성공")
             builder.setCancelable(false)
             builder.setPositiveButton("확인") { dialog, which -> finish() }
             builder.show()
         }
-
         fun Dialog_search_Address(){
             val address_Dialog = Address_Dialog(this@SignUp_Activity, signup_address_TextView)
             address_Dialog.show()
         }
-
         fun Dialog_bankname(){
             val bank_Dialog = Bank_Dialog(this@SignUp_Activity,signup_bank_name_TextView.text.toString())
             bank_Dialog.setOnShowListener(Dialog_Listener())
@@ -90,15 +80,13 @@ class SignUp_Activity : AppCompatActivity() {
     inner class asynctask : AsyncTask<String, Void, String>(){
         var state : Int = -1 //state == 0 : GET_아이디 중복확인, state == 1 : POST_회원가입
         var loadingDialog = Loading_Dialog(this@SignUp_Activity)
-
         override fun onPreExecute() {
-            loadingDialog.show()
-        }
+            //loadingDialog.show()
+    }
         override fun doInBackground(vararg params: String): String {
             state = Integer.parseInt(params[0])
-            var url = params[1]
+            val url = params[1]
             var response : String = ""
-
             when (state){
                 0->response = Okhttp().GET(url)
                 1->{
@@ -110,15 +98,14 @@ class SignUp_Activity : AppCompatActivity() {
         }
 
         override fun onPostExecute(response: String) {
+            //loadingDialog.dismiss()
             if(response.isEmpty()) {
                 Log.d("SignUp_Activity", "null")
-                loadingDialog.dismiss()
                 return
             }
             if(!Json().isJson(response)){
                 Toast.makeText(applicationContext,"네트워크 통신 오류", Toast.LENGTH_SHORT).show()
                 Log.d("SignUp_Activity",response)
-                loadingDialog.dismiss()
                 return
             }
 
@@ -178,7 +165,6 @@ class SignUp_Activity : AppCompatActivity() {
                     Toast.makeText(applicationContext,"중복확인이 필요합니다",Toast.LENGTH_SHORT).show()
                     return
                 }
-
                 if(SignUp_Control().edit_check()){ //필수 입력 정보 체크
                     val id = signup_id_EditText.text.toString()
                     val name = signup_name_EditText.text.toString()
@@ -192,7 +178,6 @@ class SignUp_Activity : AppCompatActivity() {
                     val pw = signup_pw2_EditText.text.toString()
                     user = User(id,name,phone,email,address,bank_name,bank_number,bank_holder)
                     user!!.address_detail = address_detail
-
                     SignUp_Control().POST_SignUp(pw)
                 }
             }
@@ -200,13 +185,15 @@ class SignUp_Activity : AppCompatActivity() {
             R.id.signup_findadd_Button->SignUp_Control().Dialog_search_Address()
         }
     }
-
     inner class EditListener : TextWatcher {
         override fun afterTextChanged(s: Editable?) { signup_idcheck_Button.isEnabled = !s.isNullOrEmpty() }
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { }
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             checkId = false
-            //signup_signup_Button.isEnabled = false
         }
+    }
+    override fun onPause() {
+        asynctask().cancel(true)
+        super.onPause()
     }
 }
