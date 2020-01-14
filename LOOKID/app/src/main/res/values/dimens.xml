@@ -8,4 +8,6 @@
     <dimen name="dialog_bank_row_height">48dp</dimen>
     <dimen name="dialog_width">80%</dimen>
     <dimen name="dialog_height">70%</dimen>
+    <dimen name="dialog_width_child">90%</dimen>
+    <dimen name="dialog_height_child">70%</dimen>
 </resources>

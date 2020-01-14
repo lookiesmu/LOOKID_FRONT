@@ -306,7 +306,8 @@
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             android:button="@drawable/checkbox_updown"
-                            android:checked="false" />
+                            android:checked="false"
+                            android:visibility="gone" />
                     </RelativeLayout>
 
                     <android.support.v7.widget.RecyclerView
@@ -314,7 +315,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp" />
+                        android:layout_marginRight="10dp"
+                        app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
 
                     <TableLayout
                         android:layout_width="match_parent"

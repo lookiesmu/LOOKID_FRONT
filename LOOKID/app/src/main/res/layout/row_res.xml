@@ -4,6 +4,7 @@
     android:id="@+id/res_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="3dp"
     android:layout_marginTop="3dp"
     android:background="@drawable/view_half_round_white_edge_fore"
     android:gravity="center_vertical"

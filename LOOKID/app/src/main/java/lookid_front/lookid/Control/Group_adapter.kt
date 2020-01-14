@@ -14,13 +14,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import lookid_front.lookid.Activity.ResInfo_Activity
-import lookid_front.lookid.Entity.Group_Entity
+import lookid_front.lookid.Entity.Group
 import lookid_front.lookid.R
 import lookid_front.lookid.Activity.Reservation_Activity
-import lookid_front.lookid.Entity.Admin_Entity
+import lookid_front.lookid.Entity.Admin
 import org.json.JSONObject
 
-class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity>) : RecyclerView.Adapter<Group_adapter.holder>() {
+class Group_adapter(val context: Context, val grouplist : ArrayList<Group>) : RecyclerView.Adapter<Group_adapter.holder>() {
     var child_adapter : Child_adapter = Child_adapter(context)
     var checked_list : ArrayList<Boolean> = arrayListOf<Boolean>(false)
     var child_num_list : ArrayList<Int> = arrayListOf<Int>(0)
@@ -28,7 +28,7 @@ class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity
     val textWatcher_ary = arrayListOf<EditListener>()
     var group_state : Boolean = true
     var activity : String = ""
-    constructor(context: Context, grouplist: ArrayList<Group_Entity>, group_state : Boolean, activity : String) : this(context, grouplist){
+    constructor(context: Context, grouplist: ArrayList<Group>, group_state : Boolean, activity : String) : this(context, grouplist){
         this.group_state = group_state
         this.activity = activity
     }
@@ -36,6 +36,7 @@ class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity
         val view = LayoutInflater.from(context).inflate(R.layout.row_res_group,p0,false)
         for(i in 0 until 10){
             textWatcher_ary.add(EditListener(i))
+            checked_list.add(false)
         }
         return holder(view)
     }
@@ -49,9 +50,7 @@ class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity
         val adminlist_RecView = view.findViewById<RecyclerView>(R.id.res_group_adminlist_RecView)
         val delete_Button = view.findViewById<Button>(R.id.res_group_delete_Button)
         val child_CheckBox = view.findViewById<CheckBox>(R.id.res_group_child_CheckBox)
-
-
-        fun bind(group : Group_Entity, context : Context, id : Int) {
+        fun bind(group : Group, context : Context, id : Int) {
             if(!group_state){ //변경 불가능
                 name_EditText.isEnabled = false
                 child_Button.isEnabled = false
@@ -62,8 +61,9 @@ class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity
             }
             val index = id
             Log.d("Res_Group","$index + 번째 그룹이 바인드됨")
-            val admin_adapter = Admin_adapter(context, grouplist[index].admin_list)
+            val admin_adapter = Admin_adapter(context, grouplist[index].admin_list,true)
             adminlist_RecView.adapter = admin_adapter
+            adminlist_RecView.setItemViewCacheSize(20)
             if(index < grouplist.size)
                 name_EditText.setText(group.name)
             for(i in 0 until 10)
@@ -72,14 +72,15 @@ class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity
             child_Button.setOnClickListener(Click_listener(index))
             admin_Button.setOnClickListener(Click_listener(index,admin_EditText,admin_adapter))
             delete_Button.setOnClickListener(Click_listener(index,name_EditText))
-            child_CheckBox.isChecked = checked_list[index]
+            if(grouplist[index].child_list.size > 0)
+                child_CheckBox.isChecked = true
         }
     }
     //피보호자 리스트 다이얼로그를 띄워주는 함수
     fun Dialog_child(index : Int){
-        val builder = AlertDialog.Builder(this.context)
+        val builder = AlertDialog.Builder(this.context,R.style.DialogStyle_child)
         builder.setTitle("피보호자 목록")
-        var inflater  = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val inflater  = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         builder.setView(inflater.inflate(R.layout.dialog_res_childlist,null))
         builder.setPositiveButton("확인",null)
         builder.setNegativeButton("취소",null)
@@ -95,13 +96,14 @@ class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity
         }
         checked_list.add(false)
         child_num_list.add(0);
-        grouplist.add(Group_Entity(0, arrayListOf(), arrayListOf(),""))
+        grouplist.add(Group(0, arrayListOf(), arrayListOf(),""))
         notifyItemChanged(grouplist.size)
     }
     //네트워크에 GET 방식으로 id를 이용해 관리자를 검색하는 함수
-    private fun GET_admin(id : String){
-        /*val url = context.getString(R.string.server_url) + context.getString(R.string.find_admin) + id
-        asynctask().execute(url)*/ //통신 on 코드
+    private fun GET_admin(id : String, admin_adapter: Admin_adapter){
+        var url = context.getString(R.string.server_url) + context.getString(R.string.find_admin)
+        url = url.replace("{id}",id)
+        asynctask(admin_adapter).execute(url) //통신 on 코드
 
         //admin_adapter.add(Pair(id,1)) //테스트 코드
     }
@@ -113,7 +115,6 @@ class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity
 
         return num
     }
-
     //어뎁터 클릭 리스너
     inner class Click_listener(val index : Int) : View.OnClickListener{
         var editText : EditText? = null
@@ -139,12 +140,11 @@ class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity
                     Log.d("Res_Group",grouplist.toString())
                 }
                 R.id.res_group_idsearch_Button->{
-
                     if(!editText!!.text.isNullOrEmpty()){
                         val id = editText!!.text.toString()
                         //id를 이용 검색
-                        admin_adapter!!.add(Admin_Entity(0,id,id))
-                        //GET_admin(id)
+                        //admin_adapter!!.add(Admin(0,id,id))
+                        GET_admin(id,admin_adapter!!)
                         editText!!.setText("")
                     }
                     else
@@ -171,6 +171,7 @@ class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity
                 child_num.setText(grouplist[index].child_list.size.toString())
                 child_adapter.setlist(grouplist[index].child_list)
             }
+            child_button.isEnabled = !child_num.text.isNullOrEmpty()
 
             positiveButton.setOnClickListener {
                 if(child_adapter.checklist()){
@@ -179,9 +180,8 @@ class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity
                     notifyDataSetChanged()
                     //해당 리스너
                     //context로 액태비티 콜하고 해당 함수 실행
-                    if(activity.equals("ResInfo")){
+                    if(activity.equals("ResInfo"))
                         (context as ResInfo_Activity).ResInfo_Control().pay_init()
-                    }
                     else{
                         (context as Reservation_Activity).devicenum = getDevice_num()
                         (context as Reservation_Activity).Reservation_Control().pay_init()
@@ -193,10 +193,10 @@ class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity
                 if(child_num.text.toString().isEmpty()){
                     Toast.makeText(context,"피보호자 수를 입력해주세요",Toast.LENGTH_SHORT).show()
                 }
-                else {
+                else
                     child_adapter.list_init(child_num.text.toString().toInt())
-                }
             }
+            child_num.addTextChangedListener(EditListener_child(child_button))
         }
     }
     inner class EditListener(var index : Int) : TextWatcher {
@@ -212,32 +212,24 @@ class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { }
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
     }
-    inner class numEditListener(val index : Int) : TextWatcher{
-        override fun afterTextChanged(s: Editable?) {
-            if(!s.isNullOrEmpty())
-                child_num_list[index] = s.toString().toInt()
-            Log.d("Res_Group","리스너 콜됨")
-        }
-        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-        }
-        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-        }
-    }
-    inner class asynctask : AsyncTask<String, Void, String>(){
+
+    inner class asynctask(val admin_adapter: Admin_adapter) : AsyncTask<String, Void, String>(){
+        var url = ""
+        var index = -1
         override fun doInBackground(vararg params: String): String {
             //GET_관리자 검색
-            val url = params[0]
+            url = params[0]
             return Okhttp(context).GET(url)
         }
-
         override fun onPostExecute(response: String) {
             if(response.isEmpty()) {
                 Log.d("Res_Group", "null")
                 return
             }
+            Log.d("Res_Group", url)
+            Log.d("Res_Group", response)
             if(!Json().isJson(response)){
                 Toast.makeText(context,"네트워크 통신 오류", Toast.LENGTH_SHORT).show()
-                Log.d("Res_Group", response)
                 return
             }
             val json  = JSONObject(response)
@@ -245,8 +237,15 @@ class Group_adapter(val context: Context, val grouplist : ArrayList<Group_Entity
             val name = json.getString("name")
             if(index == 0)
                 Toast.makeText(context,"존재하지 않는 아이디입니다",Toast.LENGTH_SHORT).show()
-            /*else
-                admin_adapter.add(Pair(name, index))*/
+            else
+                admin_adapter.add(Admin(index,json.getString("id"),name))
         }
+    }
+    inner class EditListener_child(val child_button: Button) : TextWatcher {
+        override fun afterTextChanged(s: Editable?) {
+            child_button.isEnabled = !s.isNullOrEmpty()
+        }
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {        }
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
     }
 }
