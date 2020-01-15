@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">LOOKID</string>
-    <string name="server_url">http://c4330022.ngrok.io/</string>
+    <string name="server_url">http://13.124.159.255:8080/LOOKID/</string>
     <string name="check_id">user/idcheck?id=</string>
     <string name="sign_up">user/signup</string>
     <string name="sign_in">user/signin</string>
@@ -10,13 +10,16 @@
     <string name="find_admin">user/find_admin?id={id}</string>
     <string name="user_modify">user/modify</string>
     <string name="user_modify_pw">user/modify_pw</string>
-    <string name="check_date">reservation/</string>
-    <string name="selete_res">reservation/list</string>
+    <string name="check_date">reservation/today</string>
+    <string name="selete_res_list">reservation/list</string>
     <string name="selete_res_detail">reservation/detail?rv_pid={rv_pid}</string>
     <string name="reservation">reservation/create</string>
     <string name="reservation_modify">reservation/modify</string>
     <string name="reservation_cancel">reservation/cancel</string>
-    <string name="map_init">map/</string>
+    <string name="main_child_ad">web/childCustom</string>
+    <string name="map_init">map/?rv_pid={rv_pid}</string>
+    <string name="map_setup">map/location?g_pid={g_pid}</string>
+    <string name="kakao_address">web/address</string>
     <string-array name="bank_list">
         <item>카카오뱅크</item>
         <item>NH농협</item>
@@ -60,22 +63,12 @@
         \n예약일로 부터 7일 전 - 100% 환불
         \n기기 당 보증금 1,000원 (기기 반납 완료 후 환금)
         \n배달 요금 전국 5,000원 (단, 제주 및 산간지역 6,000원, 5만원 이상 결제 시 무료)
-        \n\n예약 취소 시 환급 규정
-        \n예약일로 부터 7일 전 - 100% 환불
-        \n기기 당 보증금 1,000원 (기기 반납 완료 후 환금)
-        \n배달 요금 전국 5,000원 (단, 제주 및 산간지역 6,000원, 5만원 이상 결제 시 무료)
-        \n\n예약 취소 시 환급 규정
-        \n예약일로 부터 7일 전 - 100% 환불
-        \n기기 당 보증금 1,000원 (기기 반납 완료 후 환금)
-        \n배달 요금 전국 5,000원 (단, 제주 및 산간지역 6,000원, 5만원 이상 결제 시 무료)
-        \n\n예약 취소 시 환급 규정
     </string>
     <string name="res_content">
         계좌번호 - 로 입금, 입금 확인 후 예약이 완료됩니다\n
         예약 취소는 예약 완료 전까지 가능하며 이후는 결제 약관에 따라 금액이 환불됩니다\n
         예약하신 내역은 예약 확인 페이지에서 확인하실 수 있습니다
     </string>
-
     <string name="map_info">
         지도를 자세히 보시면, 마커 색이
         세 가지로 정해져 있습니다.
@@ -83,5 +76,4 @@
         \n노란색 마커는 좀 멀리 떨어져 있는 아이,
         \n빨간색 마커는 돌볼 수 있는 안전한 구역에서 많이 벗어난 위치입니다.
     </string>
-
 </resources>

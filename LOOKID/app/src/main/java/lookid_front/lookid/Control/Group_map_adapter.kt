@@ -1,7 +1,6 @@
 package lookid_front.lookid.Control
 
 import android.content.Context
-import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,13 +9,13 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import lookid_front.lookid.Activity.Map_Activity
-import lookid_front.lookid.Entity.Group_Entity
 import java.util.*
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+import lookid_front.lookid.Entity.Group
 import lookid_front.lookid.R
 
-class Group_map_adapter(val context: Context, val resList: ArrayList<Group_Entity>?, val itemClick: (Group_Entity) -> Unit) : RecyclerView.Adapter<Group_map_adapter.holder>() {
+class Group_map_adapter(val context: Context, val resList: ArrayList<Group>?, val itemClick: (Group) -> Unit) : RecyclerView.Adapter<Group_map_adapter.holder>() {
     var num : Int = 0
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): holder {
         val view = LayoutInflater.from(context).inflate(R.layout.row_child3, p0, false)
@@ -60,12 +59,12 @@ class Group_map_adapter(val context: Context, val resList: ArrayList<Group_Entit
 
     }
 
-    inner class holder(view: View,itemClick: (Group_Entity) -> Unit) : RecyclerView.ViewHolder(view) {
+    inner class holder(view: View,itemClick: (Group) -> Unit) : RecyclerView.ViewHolder(view) {
 
         val resname_TextView = view.findViewById<TextView>(R.id.res_map_child_name3)
         var mapActivity:Map_Activity = Map_Activity()
 
-        fun bind(group: Group_Entity, index: Int) {
+        fun bind(group: Group, index: Int) {
             resname_TextView.text = group.name
             mapActivity.g_pid = group.g_pid
             itemView.setOnClickListener { itemClick(group)  }

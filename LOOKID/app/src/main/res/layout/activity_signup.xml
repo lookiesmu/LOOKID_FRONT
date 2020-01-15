@@ -193,8 +193,8 @@
                     android:ems="10"
                     android:hint="주소를 포함한 이메일을 입력해주세요"
                     android:inputType="text|textEmailAddress"
-                    android:maxLength="12"
-                    android:maxLines="1"
+                    android:maxLength="100"
+                    android:maxLines="2"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
             </LinearLayout>

@@ -17,30 +17,25 @@ import lookid_front.lookid.Control.Okhttp
 import lookid_front.lookid.Control.User_Control
 import lookid_front.lookid.Dialog.Address_Dialog
 import lookid_front.lookid.Dialog.Bank_Dialog
-import lookid_front.lookid.Entity.User_Entity
+import lookid_front.lookid.Entity.User
 import lookid_front.lookid.R
-import lookid_front.lookid.R.id.*
 import org.json.JSONObject
 
 class UserInfo_Activity : AppCompatActivity() {
     var editmode : Boolean = false
     var bank_list = arrayOf("")
-    var user_upload : User_Entity? = null
-
+    var user_upload : User? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_userinfo)
-
-        //UserText 초기화
         UserInfo_Control().user_init()
     }
-
     inner class UserInfo_Control{
         fun user_init(){
             editmode = false
             val editary = arrayListOf<View>(userinfo_name_EditText, userinfo_phone_EditText, userinfo_email_EditText,
                     userinfo_addressDet_EditText, userinfo_bank_number_EditText, userinfo_bank_holder_EditText, userinfo_findadd_Button)
-            var user : User_Entity = User_Control(applicationContext).get_user()
+            val user : User = User_Control(applicationContext).get_user()
 
             for(i in 0 until editary.size)
                 editary[i].isEnabled = false
@@ -52,7 +47,7 @@ class UserInfo_Activity : AppCompatActivity() {
             userinfo_address_TextView.text = user.address
             userinfo_addressDet_EditText.setText(user.address_detail)
             userinfo_bank_name_TextView.text = user.bank_name
-            userinfo_bank_number_EditText.setText(user.bank_number)
+            userinfo_bank_number_EditText.setText(user.bank_num)
             userinfo_bank_holder_EditText.setText(user.bank_holder)
         }
 
@@ -67,27 +62,23 @@ class UserInfo_Activity : AppCompatActivity() {
             userinfo_bank_name_Button.visibility = View.VISIBLE
             userinfo_findadd_Button.isEnabled = true
         }
-
         fun user_modfiy_go(){
             if(edit_check()){
-                //0. User set_up
-                val user : User_Entity = User_Control(applicationContext).get_user()
-
+                //0. User init
+                val user : User = User_Control(applicationContext).get_user()
                 user.name = userinfo_name_EditText.text.toString()
                 user.phone = userinfo_phone_EditText.text.toString()
                 user.email = userinfo_email_EditText.text.toString()
                 user.address = userinfo_address_TextView.text.toString()
                 user.address_detail = userinfo_addressDet_EditText.text.toString()
                 user.bank_name = userinfo_bank_name_TextView.text.toString()
-                user.bank_number = userinfo_bank_number_EditText.text.toString()
+                user.bank_num = userinfo_bank_number_EditText.text.toString()
                 user.bank_holder = userinfo_bank_holder_EditText.text.toString()
                 //1. User_Control update
                 User_Control(applicationContext).set_user(user)
                 userinfo_modify_Button.background = getDrawable(R.drawable.icon_modify)
-
                 //2. server update
                 PUT_user_modify(user)
-
                 user_init()
             }
         }
@@ -135,14 +126,14 @@ class UserInfo_Activity : AppCompatActivity() {
             address_Dialog.show()
         }
 
-        fun PUT_user_modify(user : User_Entity){
-            val url = getString(R.string.server_url)
+        fun PUT_user_modify(user : User){
+            val url = getString(R.string.server_url) + getString(R.string.user_modify)
             user_upload = user
             asynctask().execute("0",url)
         }
 
         fun PUT_pw_modify(pw : String){
-            val url = getString(R.string.server_url)
+            val url = getString(R.string.server_url) + getString(R.string.user_modify_pw)
             asynctask().execute("1",url,pw)
         }
     }
@@ -153,12 +144,10 @@ class UserInfo_Activity : AppCompatActivity() {
         override fun onPreExecute() {
             loadingDialog.show()
         }
-
         override fun doInBackground(vararg params: String): String {
             state = Integer.parseInt(params[0])
-            var url = params[1]
+            val url = params[1]
             var response : String = ""
-
             when (state){
                 0->response = Okhttp(applicationContext).PUT(url, Json().modify_user(user_upload))
                 1-> {
@@ -168,20 +157,18 @@ class UserInfo_Activity : AppCompatActivity() {
             }
             return response
         }
-
         override fun onPostExecute(response: String) {
             if(response.isEmpty()) {
                 Log.d("UserInfo_Activity", "null")
                 loadingDialog.dismiss()
                 return
             }
+            Log.d("UserInfo_Activity",response)
             if(!Json().isJson(response)){
                 Toast.makeText(applicationContext,"네트워크 통신 오류", Toast.LENGTH_SHORT).show()
-                Log.d("UserInfo_Activity",response)
                 loadingDialog.dismiss()
                 return
             }
-
             val jsonObj = JSONObject(response)
             when (state){
                 0->{
@@ -192,16 +179,13 @@ class UserInfo_Activity : AppCompatActivity() {
                     else Toast.makeText(applicationContext,"사용자 정보 변경 실패",Toast.LENGTH_LONG).show()
                 }
                 1->{
-                    if(jsonObj.getBoolean("success")) {
-                        Toast.makeText(applicationContext, "정보가 변경되었습니다", Toast.LENGTH_LONG).show()
-                    }
+                    if(jsonObj.getBoolean("success")) Toast.makeText(applicationContext, "정보가 변경되었습니다", Toast.LENGTH_LONG).show()
                     else Toast.makeText(applicationContext,"사용자 정보 변경 실패",Toast.LENGTH_LONG).show()
                 }
             }
             loadingDialog.dismiss()
         }
     }
-
     //Activity 클릭 리스너
     fun userinfo_Click_Listener(view : View){
         when (view.id){
@@ -210,16 +194,13 @@ class UserInfo_Activity : AppCompatActivity() {
                     UserInfo_Control().user_modify()
                     userinfo_modify_Button.background = getDrawable(R.drawable.icon_save)
                 }
-                else {
-                    UserInfo_Control().Dialog_make_sure()
-                }
+                else UserInfo_Control().Dialog_make_sure()
             }
             R.id.userinfo_pwchange_Button ->{ UserInfo_Control().Dialog_pw_change() }
             R.id.userinfo_bank_name_Button -> { UserInfo_Control().Dialog_bankname()}
             R.id.userinfo_findadd_Button ->{ UserInfo_Control().Dialog_search_Address()}
         }
     }
-
     inner class Dialog_Listener : DialogInterface.OnShowListener{
         override fun onShow(dialog: DialogInterface?) {
             val alert = dialog as AlertDialog
@@ -233,7 +214,6 @@ class UserInfo_Activity : AppCompatActivity() {
                 }
             }
         }
-
         fun checkpw(pw1 : String, pw2 : String) : Boolean{
             if(pw1.isEmpty() || pw2.isEmpty()) {
                 Toast.makeText(applicationContext,"비밀번호를 입력해주세요",Toast.LENGTH_SHORT).show()
@@ -245,5 +225,9 @@ class UserInfo_Activity : AppCompatActivity() {
             }
             return true
         }
+    }
+    override fun onPause() {
+        asynctask().cancel(true)
+        super.onPause()
     }
 }

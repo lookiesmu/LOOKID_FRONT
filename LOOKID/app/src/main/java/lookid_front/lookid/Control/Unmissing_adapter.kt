@@ -8,12 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
-import lookid_front.lookid.Entity.Child_Entity
+import lookid_front.lookid.Entity.Child
 import lookid_front.lookid.R
 import java.util.*
 
 
-class Unmissing_adapter(val context: Context, val resList : ArrayList<Child_Entity>?, val itemClick: (Child_Entity) -> Unit)  : RecyclerView.Adapter<Unmissing_adapter.holder>() {
+class Unmissing_adapter(val context: Context, val resList : ArrayList<Child>?, val itemClick: (Child) -> Unit)  : RecyclerView.Adapter<Unmissing_adapter.holder>() {
     
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): holder {
         val view = LayoutInflater.from(context).inflate(R.layout.row_child, p0, false)
@@ -29,13 +29,13 @@ class Unmissing_adapter(val context: Context, val resList : ArrayList<Child_Enti
         if(!resList!![p1].isMissing)
             p0.bind(resList!![p1], p1)
     }
-    inner class holder(itemView: View, itemClick: (Child_Entity) -> Unit) : RecyclerView.ViewHolder(itemView) {
+    inner class holder(itemView: View, itemClick: (Child) -> Unit) : RecyclerView.ViewHolder(itemView) {
 
         val res_map_view = itemView.findViewById<LinearLayout>(R.id.res_map_view)
         val resname_TextView = itemView.findViewById<TextView>(R.id.res_map_child_name)
 
-        fun bind(child: Child_Entity, index: Int) {
-            resname_TextView.text = child.name
+        fun bind(child: Child, index: Int) {
+            resname_TextView.text = child.c_name
             itemView.setOnClickListener { itemClick(child) }
         }
     }

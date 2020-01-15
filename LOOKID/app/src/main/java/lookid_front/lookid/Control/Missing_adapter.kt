@@ -6,15 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import lookid_front.lookid.Entity.Child_Entity
+import lookid_front.lookid.Entity.Child
 import lookid_front.lookid.R
 import java.util.*
-import android.util.SparseBooleanArray
 
 
-
-
-class Missing_adapter(val context: Context, val resList : ArrayList<Child_Entity>?, val itemClick: (Child_Entity) -> Unit)  : RecyclerView.Adapter<Missing_adapter.holder>() {
+class Missing_adapter(val context: Context, val resList : ArrayList<Child>?, val itemClick: (Child) -> Unit)  : RecyclerView.Adapter<Missing_adapter.holder>() {
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): holder {
 
@@ -23,7 +20,6 @@ class Missing_adapter(val context: Context, val resList : ArrayList<Child_Entity
 
     }
 
-
     override fun getItemCount(): Int {
         if (resList?.size == null) {
             return 0
@@ -31,17 +27,15 @@ class Missing_adapter(val context: Context, val resList : ArrayList<Child_Entity
         return resList!!.size
     }
 
-
     override fun onBindViewHolder(p0: holder, p1: Int) {
         if(resList!![p1].isMissing)
             p0.bind(resList!![p1], p1)
     }
 
-
-    inner class holder(itemView: View, itemClick: (Child_Entity) -> Unit) : RecyclerView.ViewHolder(itemView) {
+    inner class holder(itemView: View, itemClick: (Child) -> Unit) : RecyclerView.ViewHolder(itemView) {
         val resname_TextView = itemView.findViewById<TextView>(R.id.res_map_child_name2)
-        fun bind(child: Child_Entity, index: Int) {
-            resname_TextView.text = child.name
+        fun bind(child: Child, index: Int) {
+            resname_TextView.text = child.c_name
             itemView.setOnClickListener { itemClick(child) }
         }
     }

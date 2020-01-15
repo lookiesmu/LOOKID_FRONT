@@ -29,9 +29,9 @@ import kotlinx.android.synthetic.main.activity_map_navigation.*
 import lookid_front.lookid.Control.*
 import lookid_front.lookid.Control.Map
 import lookid_front.lookid.Dialog.Map_Dialog
-import lookid_front.lookid.Entity.Admin_Entity
-import lookid_front.lookid.Entity.Child_Entity
-import lookid_front.lookid.Entity.Group_Entity
+import lookid_front.lookid.Entity.Admin
+import lookid_front.lookid.Entity.Child
+import lookid_front.lookid.Entity.Group
 
 import net.daum.mf.map.api.*
 import net.daum.mf.map.api.MapPoint.mapPointWithGeoCoord
@@ -58,18 +58,21 @@ class Map_Activity : AppCompatActivity() {
     val handler = Handler()
     var handlerTask : Runnable ?= null
 
-    var unmissing_childlist = arrayListOf<Child_Entity>()
-    var missing_childlist = arrayListOf<Child_Entity>()
+    var unmissing_childlist = arrayListOf<Child>()
+    var missing_childlist = arrayListOf<Child>()
 
     //전체 GROUPLIST 전역변수
-    var grouplist = arrayListOf<Group_Entity>()
+    var grouplist = arrayListOf<Group>()
     //전체 CHILDLIST 전역변수
-    var childlist = arrayListOf<Child_Entity>()
+    var childlist = arrayListOf<Child>()
 
     @SuppressLint("PrivateResource")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map)
+        val Intent = intent
+        rv_pid = Intent.getIntExtra("rv_pid", -1)//intent로 rv_pid 받아옴, 단 없으면 -1
+        //이거 이용해서 처리
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON) // 맵이 사용되는 동안 화면 끄지 않기.
         mapControl().init()
         Log.d("Map_Activity", "oncreate")
@@ -77,13 +80,9 @@ class Map_Activity : AppCompatActivity() {
 
     inner class mapControl {
         fun init() {
-            GET_Map_init(rv_pid) //******************************
-            grouplist.add(Group_Entity(0, arrayListOf<String>(), arrayListOf<Admin_Entity>(), "햇님반"))
-            grouplist.add(Group_Entity(1, arrayListOf<String>(), arrayListOf<Admin_Entity>(), "별님반"))
+            GET_Map_init(7) //******************************
 
-            group_adapter = Group_map_adapter(this@Map_Activity, grouplist) { group -> g_pid = group.g_pid; Toast.makeText(this@Map_Activity, group.name + " 입니다", Toast.LENGTH_SHORT).show() }
-            group_RecView.adapter = group_adapter
-            group_RecView.layoutManager = LinearLayoutManager(applicationContext, LinearLayout.HORIZONTAL, false)
+
 
             mapView_init()  // 가공 작업
             mapView_start()
@@ -111,7 +110,7 @@ class Map_Activity : AppCompatActivity() {
         }
 
         fun mapView_init() {
-            mMapView = Map(mMapView, childlist, this@Map_Activity)
+            mMapView = Map(childlist, this@Map_Activity)
             val mapViewContainer = map_view
             mapViewContainer.addView(mMapView)
             gpsCheck()
@@ -123,18 +122,7 @@ class Map_Activity : AppCompatActivity() {
                     Log.i("innerclass set_up()", "asdf" + getGpid())
                     Log.d("alarm_list",alarmMap.toString())
 
-                    //GET_Map_Loc(g_pid)  //*********************************
-
-                    if(g_pid == 0) {
-                        childlist.clear()
-                        childlist.add(Child_Entity(0, "전효승", 37.570035, 126.983887, false))
-                        childlist.add(Child_Entity(1, "박지상", 37.602655, 126.955193, false))
-                    }
-                    if(g_pid == 1){
-                        childlist.clear()
-                        childlist.add(Child_Entity(0, "양유림", 37.602315, 126.954705, false))
-                        childlist.add(Child_Entity(1, "김동민", 37.601643, 126.955606, false))
-                    }
+                    GET_Map_setup(g_pid)  //*********************************
                     mMapView!!.set_childlist(childlist)
                     childlist_setup()
                     check_alarm()
@@ -146,16 +134,16 @@ class Map_Activity : AppCompatActivity() {
         }
 
         fun childlist_setup() {
-            val unmissing_childlist = arrayListOf<Child_Entity>()
-            val missing_childlist = arrayListOf<Child_Entity>()
+            val unmissing_childlist = arrayListOf<Child>()
+            val missing_childlist = arrayListOf<Child>()
             for (i in childlist) {
                 if (i.isMissing) {
                     missing_childlist.add(i)
-                    if (alarmMap[i.child_pid] == null)
-                        alarmMap[i.child_pid] = false
+                    if (alarmMap[i.c_pid] == null)
+                        alarmMap[i.c_pid] = false
                 } else {
                     unmissing_childlist.add(i)
-                    alarmMap.remove(i.child_pid)
+                    alarmMap.remove(i.c_pid)
                 }
             }
             this@Map_Activity.missing_childlist = missing_childlist
@@ -232,13 +220,15 @@ class Map_Activity : AppCompatActivity() {
         }
 
         fun GET_Map_init(rv_pid: Int) {
-            val url: String = ""
-            //asynctask().execute("0",url)
+            var url: String = getString(R.string.server_url) + getString(R.string.map_init)
+            url = url.replace("{rv_pid}",rv_pid.toString())
+            asynctask().execute("0",url)
         }
 
-        fun GET_Map_Loc(g_pid: Int) {
-            val url: String = ""
-            //asynctask().execute("1",url)
+        fun GET_Map_setup(g_pid: Int) {
+            var url: String = getString(R.string.server_url) + getString(R.string.map_setup)
+            url = url.replace("{g_pid}",g_pid.toString())
+            asynctask().execute("1",url)
         }
     }
 
@@ -248,11 +238,12 @@ class Map_Activity : AppCompatActivity() {
 
     @SuppressLint("StaticFieldLeak")
     inner class asynctask : AsyncTask<String, Void, String>() {
-        var state: Int = 0 // 0 : get_map , 1 : get_map_loc
+        var state: Int = -1 // 0 : get_map , 1 : get_map_loc
+        var url = ""
         override fun doInBackground(vararg params: String): String {
             //POST_예약하기 (url, jsonStr)
             state = params[0].toInt()
-            val url = params[1]
+            url = params[1]
             return Okhttp(applicationContext).GET(url)
         }
 
@@ -261,9 +252,10 @@ class Map_Activity : AppCompatActivity() {
                 Log.d("Map_Activity", "null")
                 return
             }
+            Log.d("Map_Activity", url)
+            Log.d("Map_Activity", response)
             if (!Json().isJson(response)) {
                 Toast.makeText(applicationContext, "네트워크 통신 오류", Toast.LENGTH_SHORT).show()
-                Log.d("Map_Activity", response)
                 return
             }
             val jsonArray = JSONArray(response)
@@ -271,24 +263,21 @@ class Map_Activity : AppCompatActivity() {
                 0 -> {
                     for (i in 0 until jsonArray.length()) {
                         val jsonObject: JSONObject = jsonArray.getJSONObject(i)
-                        grouplist.add(Group_Entity(jsonObject.getInt("g_pid"), arrayListOf<String>(),
-                                arrayListOf<Admin_Entity>(), jsonObject.getString("g_name")))
+                        grouplist.add(Group(jsonObject.getInt("g_pid"), arrayListOf<Child>(),
+                                arrayListOf<Admin>(), jsonObject.getString("g_name")))
                     }
+                    g_pid = grouplist[0].g_pid
+                    mapControl().GET_Map_setup(g_pid)
+                    group_adapter = Group_map_adapter(this@Map_Activity, grouplist) { group -> g_pid = group.g_pid; Toast.makeText(this@Map_Activity, group.name + " 입니다", Toast.LENGTH_SHORT).show() }
+                    group_RecView.adapter = group_adapter
+                    group_RecView.layoutManager = LinearLayoutManager(applicationContext, LinearLayout.HORIZONTAL, false)
                 }
                 1 -> {
-                    if (!childlist[0].name.equals(jsonArray.getJSONObject(0).getString("c_name"))) {
-                        childlist.clear()
-                        for (i in 0 until jsonArray.length()) {
-                            val jsonObject: JSONObject = jsonArray.getJSONObject(i)
-                            childlist.add(Child_Entity(i, jsonObject.getString("c_name"),
-                                    jsonObject.getDouble("loc_x"), jsonObject.getDouble("loc_y"), false))
-                        }
-                    } else {
-                        for (i in 0 until jsonArray.length()) {
-                            val jsonObject: JSONObject = jsonArray.getJSONObject(i)
-                            childlist[i] = Child_Entity(i, jsonObject.getString("c_name"),
-                                    jsonObject.getDouble("loc_x"), jsonObject.getDouble("loc_y"), false)
-                        }
+                    childlist.clear()
+                    for (i in 0 until jsonArray.length()) {
+                        val jsonObject: JSONObject = jsonArray.getJSONObject(i)
+                        childlist.add(Child(i, jsonObject.getString("c_name"),
+                                jsonObject.getDouble("x"), jsonObject.getDouble("y"), false))
                     }
                 }
             }
